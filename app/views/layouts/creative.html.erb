@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HRC Logistics LLC</title>
+  <title><% @app_variable.app_company_name %></title>   
 <% if @app_variable.front_end_color == "Teal" %> 
     <%= stylesheet_link_tag 'creative/manifest_teal', media: 'all' %>     
     <% elsif @app_variable.front_end_color == "Red" %> 

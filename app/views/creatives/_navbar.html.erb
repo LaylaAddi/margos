@@ -9,7 +9,8 @@
       <span class="icon-bar"></span>
       </button>
       <%= link_to(image_tag('small.png', class: "logopad pull-left"), root_path) %>  
-      <%= link_to root_path, class: "navbar-brand" do %><%= @app_variable.app_company_name %>
+      <%= link_to root_path, class: "navbar-brand" do %>
+      <%= @app_variable.app_company_name %>
       <% end %>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,7 +30,7 @@
             <li><%= link_to "Drivers", new_driver_user_session_path %></li>
             <li><% link_to "Brokers/Shippers", new_shipper_user_session_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "HRC User", new_hrc_user_session_path %></li> 
+            <li><%= link_to "Margo's User", new_company_user_session_path %></li>  
           </ul>
         </li>
   
@@ -41,7 +42,7 @@
             <li><% link_to "Driver", new_driver_user_registration_path %></li>
             <li><% link_to "Brokers/Shippers", new_shipper_user_registration_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "HRC User", new_hrc_user_registration_path %></li>  
+            <li><%= link_to "Margo's User Registration", new_company_user_registration_path %></li>  
           </ul>
         </li>
       </ul>
