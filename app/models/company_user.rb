@@ -1,4 +1,4 @@
-class HrcUser < User
+class CompanyUser < User
   has_many :loads
   has_many :driver_users, through: :loads
   ransack_alias :hrc_search_params, 

@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
 
 
-  devise_for :hrc_users, 
-  :controllers => { registrations: 'hrc_users_registrations/registrations'} 
-  resources :hrc_users do
+  devise_for :company_users, 
+  :controllers => { registrations: 'company_users_registrations/registrations'} 
+  resources :company_users do
     collection {post :import}
   end
   
@@ -80,8 +80,8 @@ Rails.application.routes.draw do
   end   
   
 
-  get 'hrc_dashboard', to: 'hrc_users#hrc_dashboard'
-  get 'driver_dashboard', to: '_driver_users#driver_dashboard'
+  get 'company_dashboard', to: 'company_users#company_dashboard'
+  get 'driver_dashboard', to: 'driver_users#driver_dashboard'
   get 'shipper_dashboard', to: 'shipper_users#shipper_dashboard'
   
   root to: 'creatives#index' 

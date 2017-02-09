@@ -1,10 +1,10 @@
-class HrcUsersRegistrations::RegistrationsController < Devise::RegistrationsController 
+class CompanyUsersRegistrations::RegistrationsController < Devise::RegistrationsController 
   
   
   private
 
   def sign_up_params
-    params.require(:hrc_user).permit(:password, 
+    params.require(:company_user).permit(:password, 
                                      :password_confirmation,
                                      :email,
                                      :first_name,
@@ -22,11 +22,11 @@ class HrcUsersRegistrations::RegistrationsController < Devise::RegistrationsCont
                                      :emergency_contact,
                                      :emergency_contact_num, 
                                      :time_zone 
-                                     )
+                                     ) 
   end
 
   def account_update_params
-    params.require(:hrc_user).permit(:password, 
+    params.require(:company_user).permit(:password, 
                                      :password_confirmation,
                                      :current_password,
                                      :email,

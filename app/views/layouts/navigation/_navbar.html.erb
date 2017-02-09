@@ -10,7 +10,8 @@
       </button>
 
         <%= link_to(image_tag('small.png', class: "pad-top-3 pull-left"), root_path) %>  
-      <%= link_to "HTC Logistics", root_path, class: "navbar-brand" %>
+      <%= link_to root_path, class: "navbar-brand" %><%= @app_variable.app_company_name do %>
+      <% end %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

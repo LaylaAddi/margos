@@ -1,4 +1,4 @@
-class HrcUsersController < UsersController 
+class CompanyUsersController < UsersController 
   before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
   def index
   	@search = HrcUser.search(params[:q])

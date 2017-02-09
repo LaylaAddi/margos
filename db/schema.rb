@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
   end
 
   create_table "app_variables", force: :cascade do |t|
-    t.string   "front_end_color",        default: "red"
+    t.string   "front_end_color",        default: "Teal"
     t.string   "app_name"
     t.string   "app_logo"
     t.string   "app_logo_text"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.text     "app_terms"
     t.text     "app_conditions"
     t.string   "theme",                  default: "Flatly"
+    t.string   "app_company_name",       default: "Margo's Cargo"
     t.string   "string_1"
     t.string   "string_2"
     t.string   "string_3"
@@ -156,28 +157,8 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "icon_28"
     t.string   "icon_29"
     t.string   "icon_30"
-    t.string   "image_1"
-    t.string   "image_2"
-    t.string   "image_3"
-    t.string   "image_4"
-    t.string   "image_5"
-    t.string   "image_6"
-    t.string   "image_7"
-    t.string   "image_8"
-    t.string   "image_9"
-    t.string   "image_10"
-    t.string   "image_11"
-    t.string   "image_12"
-    t.string   "image_13"
-    t.string   "image_14"
-    t.string   "image_15"
-    t.string   "image_16"
-    t.string   "image_17"
-    t.string   "image_18"
-    t.string   "image_19"
-    t.string   "image_20"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
   end
 
   create_table "company_profile_memberships", force: :cascade do |t|

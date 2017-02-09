@@ -171,26 +171,8 @@ class AppVariablesController < ApplicationController
                                             :icon_28,
                                             :icon_29,
                                             :icon_30,
-                                            :image_1,
-                                            :image_2,
-                                            :image_3,
-                                            :image_4,
-                                            :image_5,
-                                            :image_6,
-                                            :image_7,
-                                            :image_8,
-                                            :image_9,
-                                            :image_10,
-                                            :image_11,
-                                            :image_12,
-                                            :image_13,
-                                            :image_14,
-                                            :image_15,
-                                            :image_16,
-                                            :image_17,
-                                            :image_18,
-                                            :image_19,
-                                            :image_20
+                                            :app_company_name,
+
                                             ) 
     end
 end
