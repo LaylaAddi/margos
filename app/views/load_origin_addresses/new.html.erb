@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-sm-3">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3>Origin Address</h3>
+        <strong><%= @load.shipper_company_name %></strong><br>
+        <%= local_time(@load.pick_up_date, format: '%B %e, %Y') %>
+      </div>
+      <div class="panel-body">
+        <address>
+          <div><%= @load.origin_street  %></div>
+          <div><%= @load.origin_city %></div>
+          <div><%= @load.origin_state  %></div>
+          <div><%= @load.origin_zip %></div>
+          <br>
+          <small>Phone: </small><%= @load.origin_phone  %><br />
+          <small>Contact: </small><%= @load.origin_contact  %><br />
+          <small>Notes: </small><%= @load.pick_up_notes %>
+        </address>
+      </div>
+    </div>
+   
+  </div>
+  <div class="col-sm-9 pull-right">
+<%= render "load_origin_master_js" %>
+<% if !@load_origin_address.present? %>
+<strong style="color: red;" >Default Destination is set to Toronto, <small>add an address to update...</small></strong>
+<% end %>
+  </div>
+</div>
+<%= simple_form_for [@load, @address] do |f| %>
+<%= f.error_notification %> 
+
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group input-group">   
+      <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+<%= f.select :address_category_id, AddressCategory.all.map{ |form| [form.name, form.id]} %> <br>
+      <label>Pick Up Date </label><br />
+      <%= f.text_field :pick_up_date, class: "bring_front",
+        placeholder: " Select Date" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-institution"></i></span>
+      <%= f.input :company, label: false, placeholder: "Company Name" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+      <%= f.input :contact, label: false, placeholder: "Contact Person" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+      <%= f.input :phone, label: false, placeholder: "Telephone" %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-map"></i></span>
+      <%= f.input :street, label: false, placeholder: "Street" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-map"></i></span>
+      <%= f.input :city, label: false, placeholder: "City" %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-map-o"></i></span>
+      <%= f.input :state, collection: ApplicationRecord::States, label: false %>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-map"></i></span>
+      <%= f.input :zip, label: false, placeholder: "zip code" %>
+    </div>
+  </div>
+</div>
+<div class="row">
+<div class="col-sm-4">
+  <div class="form-group input-group">
+    <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+    <%= f.input :notes, label: false, placeholder: "Notes" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+      <%= f.input :miles, label: false, placeholder: "Miles"  %>
+    </div>
+  </div>
+</div>
+<div class="pull-right">
+<%= f.button :submit, class: 'btn btn-success btn-sm round' %> 
+<%= link_to 'Back to Load', load_path(@load), class: 'btn btn-hrcprimary btn-sm round' %>
+</div>
+<% end %>
+<%= render "calculate_distance" %> 
+<%= render "set_map_origin_destination" %>
+<div id="result">
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <%= render "last_address" %> 
+  </div>
+</div>
+
+

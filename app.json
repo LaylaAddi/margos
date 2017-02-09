@@ -1,0 +1,15 @@
+
+{
+  "name": "hrc",
+  "description": "rake the db ohh yeah",
+  "keywords": [
+    "Trucking",
+    "Carrier",
+    "hrclogistics.com"
+  ],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rake db:migrate"
+    }
+  }
+}

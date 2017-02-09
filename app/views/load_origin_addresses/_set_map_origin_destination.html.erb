@@ -1,0 +1,54 @@
+<% if @load_origin_address.nil? %>
+<input id="originStreet"  class="combineOrigin "value="<%= @load.origin_street %>" />
+<input id="originCity"  class="combineOrigin " value="<%= @load.origin_city %>"/>
+<input id="originState"  class="combineOrigin " value="<%= @load.origin_state %>"/>
+<input id="originZip"  class="combineOrigin " value="<%= @load.origin_zip %>"/>  
+
+<% else %>
+<input id="originStreet"  class="combineOrigin " value="<%= @load_origin_address.street %>" />
+<input id="originCity"  class="combineOrigin " value="<%= @load_origin_address.city %>" />
+<input id="originState"  class="combineOrigin " value="<%= @load_origin_address.state %>" />
+<input id="originZip"  class="combineOrigin " value="<%= @load_origin_address.zip %>" />  
+
+<% end %>
+<br />
+<input id="destinationStreet"  class="combineDestination "  /> 
+<input id="destinationCity"  class="combineDestination " />
+<input id="destinationState"  class="combineDestination " />
+<input id="destinationZip"  class="combineDestination " />
+ 
+
+
+
+<script>
+  $(function() {                                      
+    
+    $("#load_origin_address_street").change(function() {                  
+        $('#destinationStreet').val(this.value);                 
+    });
+});
+</script>
+    
+<script>
+  $(function() {                                       
+    $("#load_origin_address_city").change(function() {                  
+        $('#destinationCity').val(this.value);                  
+    });
+});
+</script>
+
+<script>
+  $(function() {                                       
+    $("#load_origin_address_state").change(function() {                  
+        $('#destinationState').val(this.value);                  
+    });
+});
+</script>
+<script>
+  $(function() {                                       
+    $("#load_origin_address_zip").change(function() {                 
+        $('#destinationZip').val(this.value);                  
+    });
+});
+</script>
+

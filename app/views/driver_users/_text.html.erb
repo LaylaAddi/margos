@@ -1,0 +1,27 @@
+<% @link =  "+1" + @driver.cellphone  %>
+
+<%= link_to  "text driver", message_path(@link) %>
+
+
+
+<h1>Text History</h1>
+
+
+<% @driver_number = @driver.cellphone %>
+<%= @messages.each do |message| %>
+<% if @driver_number == message.number %>
+
+          <a href="#" class="btn-link text-semibold media-heading box-inline"> </a>
+          <p class="text-muted text-sm"><i class="fa fa-mobile fa-lg"></i> 
+          <%= message.sent_received %> 
+          <% if message.inbound == false %> 
+          by <%= message.user %>
+          <% end %> 
+          on <%= local_time(message.created_at, format: '%B %e, %Y %l:%M%P %Z') %> </p>
+
+        <p><%= message.text %></p>
+        <hr>
+
+<% end %>
+<% end %>
+

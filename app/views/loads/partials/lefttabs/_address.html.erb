@@ -1,0 +1,59 @@
+<% @load_origin_addresses.each do |origin| %> 
+<% unless origin == @load_origin_addresses.where(address_category_id: 4) %>
+<div class="col-sm-6">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4>
+        <% if origin.address_category_id == 1 %>
+        <span class="label label-success round">
+        Pick Up
+        </span>
+        <% elsif origin.address_category_id == 2 %>
+        <span class="label label-primary round">
+        Delivery
+        </span>
+        <br /> 
+        <br /> 
+        <% elsif origin.address_category_id == 3 %>
+        <span class="label label-warning round">
+        Pick Up & Delivery
+        </span>    
+      </h4>
+      <% end %>
+      <%= local_time(origin.pick_up_date, format:  '%B %e, %Y') %>
+    </div>
+    <div class="panel-body">
+      <p>
+      <address>
+        <strong><%= origin.company %></strong><br>
+        <%= origin.street %><br>
+        <%= origin.city  %>, <%= origin.state  %>, <%= origin.zip  %><br>
+        <small>Phone: </small><%= origin.phone  %><br />
+        <small>Contact: </small><%= origin.contact  %><br />
+      </address>
+      <% if origin.notes.present? %>
+      <strong>Notes</strong>
+      <%= origin.notes %>  
+      <% end %>
+      </p>
+      <div class="btn-group pull-right activity-actions">
+        <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-th"></i>
+        <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+          <li>
+            <%= link_to "Edit Address", edit_load_address_path(@load, origin) %>
+          </li>
+          <li>
+            <%= link_to "Delete Address", load_address_path(@load, origin), method: :delete %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel-footer">
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>

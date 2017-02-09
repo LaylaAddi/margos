@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HRC Logistics LLC</title>
+<% if @app_variable.front_end_color == "Teal" %> 
+    <%= stylesheet_link_tag 'creative/manifest_teal', media: 'all' %>     
+    <% elsif @app_variable.front_end_color == "Red" %> 
+    <%= stylesheet_link_tag 'creative/manifest_red', media: 'all' %> 
+  <% end %>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <%= javascript_include_tag 'creative/manifest.js' %> 
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />  
+
+</head>
+
+<body>
+
+<%= yield %>
+
+</body>
+</html>
+

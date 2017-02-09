@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @driver_checkin.street %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @driver_checkin.city %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @driver_checkin.state %>
+</p>
+
+<p>
+  <strong>Postal Code:</strong>
+  <%= @driver_checkin.zip %>
+</p>
+
+<p>
+  <strong>IP Address:</strong>
+  <%= @driver_checkin.ip_address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @driver_checkin.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @driver_checkin.longitude %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @driver_checkin.status %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @driver_checkin.notes %>
+</p>
+
+<p>
+  <strong>Check In Date/Time</strong> 
+<%= local_time(@driver_checkin.created_at, format: '%B %e, %Y %l:%M%P %Z') %> 
+
+</p>
+
+<%= link_to 'Edit', edit_driver_user_driver_checkin_path(@driver, @driver_checkin) %> |
+<%= link_to 'Back', driver_user_driver_checkins_path %> 
+
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3><%= @driver.full_name %><small> Checkin: <%= local_time(@driver_checkin.created_at, format: '%B %e, %Y %l:%M%P %Z') %> </small></h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: <%= @driver_checkin.latitude %>, lng: <%= @driver_checkin.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClVHG9mw29C0oVkJDlH-QtkLnucCICkV8&callback=initMap">
+    </script>
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= @app_variable.app_tab_text %> </title>   
+    <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
+    <% if @app_variable.theme == "Cosmo" %> 
+    <%= stylesheet_link_tag 'application_cosmo', media: 'all' %>     
+    <% elsif @app_variable.theme == "Cerulean" %> 
+    <%= stylesheet_link_tag 'application_cerulean', media: 'all' %>     
+    <% elsif @app_variable.theme == "Cyborg" %> 
+    <%= stylesheet_link_tag 'application_cyborg', media: 'all' %>     
+    <% elsif @app_variable.theme == "Darkly" %> 
+    <%= stylesheet_link_tag 'application_darkly', media: 'all' %>     
+    <% elsif @app_variable.theme == "Flatly" %> 
+    <%= stylesheet_link_tag 'application_flatly', media: 'all' %>     
+    <% elsif @app_variable.theme == "Journal" %> 
+    <%= stylesheet_link_tag 'application_journal', media: 'all' %>     
+    <% elsif @app_variable.theme == "Lumen" %> 
+    <%= stylesheet_link_tag 'application_lumen', media: 'all' %>     
+    <% elsif @app_variable.theme == "Paper" %> 
+    <%= stylesheet_link_tag 'application_paper', media: 'all' %>     
+    <% elsif @app_variable.theme == "Readable" %> 
+    <%= stylesheet_link_tag 'application_readable', media: 'all' %>     
+    <% elsif @app_variable.theme == "Sandstone" %> 
+    <%= stylesheet_link_tag 'application_sandstone', media: 'all' %>     
+    <% elsif @app_variable.theme == "Simplex" %> 
+    <%= stylesheet_link_tag 'application_simplex', media: 'all' %>     
+    <% elsif @app_variable.theme == "Slate" %> 
+    <%= stylesheet_link_tag 'application_slate', media: 'all' %>     
+    <% elsif @app_variable.theme == "Spacelab" %> 
+    <%= stylesheet_link_tag 'application_spacelab', media: 'all' %>     
+    <% elsif @app_variable.theme == "Superhero" %> 
+    <%= stylesheet_link_tag 'application_superhero', media: 'all' %>     
+    <% elsif @app_variable.theme == "United" %> 
+    <%= stylesheet_link_tag 'application_united', media: 'all' %>     
+    <% elsif @app_variable.theme == "Yeti" %> 
+    <%= stylesheet_link_tag 'application_yeti', media: 'all' %>   
+    <% end %>
+ <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />  
+
+    <%= javascript_include_tag "application" %> 
+  </head>
+
+  <body>
+    <%= render 'layouts/navigation/navbar' %>
+    <%= bootstrap_flash %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

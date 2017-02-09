@@ -1,0 +1,8 @@
+<p><% driver_@checkin.each do |checkin| %> 
+<% if checkin == @checkin.last %>
+
+latitude <%= checkin.latitude %>
+longitude <%= checkin.longitude %>
+Entered On <%=  local_time(checkin.created_at, format: '%B %e, %Y %l:%M%P %Z') %> 
+<% end %>
+<% end %>

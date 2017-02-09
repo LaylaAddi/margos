@@ -1,0 +1,213 @@
+<h1>Loads</h1>
+<%= paginate @loads %>
+<%= search_form_for @search_loads do |f| %>  
+<%= link_to "Reload", 
+  loads_path, class: 'btn btn-hrcprimary btn-xs round'%>
+<br />
+<div>
+  <%= f.label :load_search_params_cont, "Search" %>  
+  <%= f.text_field :load_search_params_cont %>     
+</div>
+<div>
+  <%= f.label :invoice_price_gteq, "Rate Between" %>  
+  <%= f.text_field :invoice_price_gteq %>     
+  <%= f.label :invoice_price_lteq, "and" %>  
+  <%= f.text_field :invoice_price_lteq %> 
+</div>
+<div>
+  <%= f.label :created_at_gteq, "Dates Between" %>  
+  <%= f.date_select :created_at_gteq, order: [:month, :day, :year], include_blank: true,
+    placeholder: " Select Date" %> 
+  <%= f.label :created_at_lteq, "and" %>  
+  <%= f.date_select :created_at_lteq, order: [:month, :day, :year], include_blank: true,
+    placeholder: " Select Date" %> 
+  <br />            
+  <%= f.submit "Search", class: 'btn btn-hrcsuccess btn-xs round' %> 
+</div>
+<% end %>
+<table class="table table-bordered table-striped table-condensed table-responsive">
+	<thead>
+		<tr>
+      <th><%= sort_link @search_loads, :id, "ID" %></th>
+      <th class="col-xs-3"><%= sort_link @search_loads, :created_at, "Booked On" %></th>
+      <th>Description</th>
+
+      <th>Driver</th>
+<th>Shipper/Broker</th>
+<th>Shipper Load #</th>
+      <th>Debits</th>
+      <th>Credits</th>
+      <th><%= sort_link @search_loads, :commodity, "Commodity" %></th>
+      <th><%= sort_link @search_loads, :weight, "Weight" %></th>
+      <th><%= sort_link @search_loads, :load_size, "Load Size" %></th>
+      <th><%= sort_link @search_loads, :invoice_price, "HRC Rate" %></th>
+      <th>Driver Rate</th>
+      <th><%= sort_link @search_loads, :miles, "Distance (Miles)" %></th>
+      <th>Booking Fee</th> 
+      <th><%= sort_link @search_loads, :equipment_type, "Trailer Type" %></th>
+      <th><%= sort_link @search_loads, :status_name, "Status" %></th>
+		</tr>
+	</thead>
+
+  <tbody> 
+    <% debit_running_total = 0.00 %>
+    <% credit_running_total = 0.00 %>
+    <% expense_running_total = 0.00 %>
+    <% hrc_load_running_total = 0.00 %>
+    <% total_miles = 0 %>
+    <% driver_load_running_total = 0.00 %>
+    <% booking_fee_running_total = 0.00 %>
+    <% @loads.each do |load| %>
+    <tr>
+      <td>
+        <%= link_to load do %>
+        <%= load.id %>
+        <% end %>
+      </td>
+      <td>
+      <%= local_time(load.created_at, format: '%B %e, %Y %l:%M%P %Z') %> 
+      </td> 
+      <td>
+        <%= link_to load_path(load) do %>
+        <%= load.title %>  
+        <% end %>
+      </td>
+      <td>
+        <% if current_hrc_user %>
+        <%= link_to driver_user_path(load.driver_user_id) do %>
+        <%= load.driver_user.full_name %>
+        <% end %>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to company_profile_path(load.company_profile_id) do %>
+        <%= load.company_profile.company_name %> 
+        <% end %>
+      </td>
+      <td><%= load.broker_shipper_load_id %></td>
+<td>
+        <% load.transactions.each do |transaction| %>
+         <%= number_to_currency(transaction.debit) %> 
+        <% debit_running_total = debit_running_total + transaction.debit %>
+        <% end %>
+      </td>
+      
+      <td>
+         <% load.transactions.each do |transaction| %>
+        <%= number_to_currency(transaction.credit) %> 
+
+        <% credit_running_total = credit_running_total + transaction.credit %>
+        <% end %>
+      </td>
+      <td><%= load.commodity %></td>
+      <td><%= load.weight %></td>
+      <td><%= load.load_size %></td>
+      <td>
+        <%= number_to_currency(load.invoice_price) %>
+      </td>
+      <td><%= number_to_currency(load.rate_to_driver_after_factor_fees) %></td>
+      <td><%= load.miles %> </td>
+
+      <td>
+        <%= number_to_currency(load.booking_fee) %>
+      </td>
+      <td><%= load.equipment_type %></td>
+      <td><%= load.status_name %></td>
+
+    </tr>
+    <% hrc_load_running_total = hrc_load_running_total + load.invoice_price %> 
+    <% booking_fee_running_total = booking_fee_running_total + load.booking_fee %> 
+    <% driver_load_running_total = driver_load_running_total + load.rate_to_driver_after_factor_fees %> 
+    <% total_miles = total_miles + load.miles %>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<% driver_net = driver_load_running_total - expense_running_total %>
+<% hrc_net = hrc_load_running_total - driver_load_running_total %>
+<% debit_total = debit_running_total - credit_running_total %>
+<% rate_after_expenses = driver_load_running_total - debit_total%>
+<br />
+<br /> 
+<table class="table table-bordered table-striped table-condensed table-responsive">
+	<thead>
+		<tr>
+
+			<th>
+				Total Miles
+			</th>
+			<th>
+				Amount Before Expenses
+			</th>
+			<th>
+				Debits
+			</th>
+			<th>
+				Credits
+			</th>
+			<th>
+				Debit/Credit Total
+			</th>
+			<th>
+				Gross RPM
+			</th>
+			<th>
+				Net RPM
+			</th>
+			<th>
+				Payment Amount
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<%= total_miles %>
+			</td>
+			<td>
+				<%= number_to_currency(driver_load_running_total) %>
+			</td>
+			<td>
+				<%= number_to_currency(debit_running_total) %>
+			</td>
+			<td>
+				<%= number_to_currency(credit_running_total) %>
+			</td>
+
+
+			<td>
+				- <%= number_to_currency(debit_total) %>
+			</td>
+
+			<td>
+				<%= number_to_currency(driver_load_running_total / total_miles) %>
+			</td>
+			<td>
+			  <%= number_to_currency(rate_after_expenses / total_miles) %>
+
+			</td>
+			<td>
+			<strong><%= number_to_currency(driver_load_running_total - debit_total) %></strong>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+
+<br /> 
+
+
+<div class="row">
+  <div class="col-sm-3">
+    <h4>Import Loads</h4>
+    <%= form_tag import_loads_path, multipart: true do %>
+    <%= file_field_tag :file, class: "btn btn-success btn-xs" %><br>
+    <%= submit_tag "Upload Loads", class: "btn btn-info btn-xs" %>
+    <% end %>
+  </div>
+  <div class="col-sm-4">
+    <h4>Export Loads</h4>
+    <%= link_to "Download Loads", loads_path(format: :csv), 
+      class: "btn btn-primary btn-xs round" %> 
+  </div>
+</div>

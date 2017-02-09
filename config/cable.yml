@@ -1,0 +1,10 @@
+development:
+  adapter: redis
+  url: redis://:actioncable@redis-11617.c10.us-east-1-4.ec2.cloud.redislabs.com:11617
+
+test:
+  adapter: async 
+
+production:
+  adapter: redis
+  url: redis://:actioncable@redis-11617.c10.us-east-1-4.ec2.cloud.redislabs.com:11617

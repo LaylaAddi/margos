@@ -1,0 +1,46 @@
+<%= simple_form_for(@truck) do |f| %>
+<div class="form-inputs">
+  <div class="col-xs-8 col-xs-offset-2 shadow animated">
+    <div class="panel panel-default shadow animated">
+      <div class="panel-heading shadow animated">
+        <% if @truck.driver_user.present? %>
+          <h2>Trailer Driver <%= @truck.driver_user.full_name %></h2>
+        <% else %>  
+          <h2>New Trailer</h2>
+        <% end %>      
+      </div>
+      <div class="panel-body">
+        <p>
+  <div class="form-inputs">
+    <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+      :id, :full_name, include_blank: "Select Driver"  %> 
+    <%= f.input :service_status, collection: ApplicationRecord::TruckTrailerStatus %>
+    <%= f.input :year %>
+    <%= f.input :make %>
+    <%= f.input :model %>
+    <%= f.input :plate %>
+    <%= f.input :plate_state, 
+                  collection: ApplicationRecord::States, include_blank: "State" %>
+    <%= f.input :color %>
+    <%= f.input :number %>
+    <%= f.input :vin %>
+    <%= f.input :image, as: :file, label: "Add Image" %>
+    <%= f.input :notes %>
+
+
+  </div>
+        </p>
+      </div>
+      <div class="panel-footer shadow animated">
+        <div class="form-actions">
+          <%= f.button :submit , class: "btn btn-info btn-sm round" %> 
+          <%= link_to 'All Trailers', trailers_path, class: "btn btn-success btn-sm round" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+

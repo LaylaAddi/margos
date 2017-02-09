@@ -1,0 +1,41 @@
+<div class="col-lg-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>    
+        <% if @load.driver_user.present? %>
+        <%= link_to @load.driver_user.full_name, 
+        driver_user_path(@load.driver_user_id) %> 
+        
+        <% else %>
+        No Driver Assigned
+        <% end %>
+      </h3>
+       
+    </div>
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+      <!-- Nav tabs -->
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#financials" data-toggle="tab">Financials</a></li>
+        <% if current_hrc_user %>
+        <li><a href="#newexpense" data-toggle="tab">New Transaction</a></li>
+        <% end %> 
+
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="financials">
+          <%= render "loads/partials/righttabs/financials" %>
+        </div>
+        <% if current_hrc_user %>
+        <div class="tab-pane fade" id="newexpense"> 
+          <%= render "loads/partials/righttabs/new_expense" %>
+        </div>
+        <% end %> 
+
+      </div>
+    </div>
+    <!-- /.panel-body -->
+  </div>
+  <!-- /.panel -->
+</div>

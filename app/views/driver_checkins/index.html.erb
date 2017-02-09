@@ -1,0 +1,43 @@
+<h1>Driver Checkins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th>IP address</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Status</th>
+      <th>Notes</th>
+      <th>Driver user</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @driver_checkins.each do |driver_checkin| %>
+      <tr>
+        <td><%= driver_checkin.street %></td>
+        <td><%= driver_checkin.city %></td>
+        <td><%= driver_checkin.state %></td>
+        <td><%= driver_checkin.zip %></td>
+        <td><%= driver_checkin.ip_address %></td>
+        <td><%= driver_checkin.latitude %></td>
+        <td><%= driver_checkin.longitude %></td>
+        <td><%= driver_checkin.status %></td>
+        <td><%= driver_checkin.notes %></td>
+        <td><%= driver_checkin.driver_user_id %></td>
+        <td><%= link_to 'Show', driver_user_driver_checkin_path(@driver, driver_checkin) %></td>
+        <td><%= link_to 'Edit', edit_driver_user_driver_checkin_path(@driver, driver_checkin) %></td>
+                <td><%= link_to 'Destroy', driver_user_driver_checkin_path(@driver, driver_checkin), 
+        method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
