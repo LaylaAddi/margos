@@ -1,19 +1,19 @@
 class CompanyUsersController < UsersController 
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy]
   def index
-  	@search = HrcUser.search(params[:q])
-  	@hrc_users = @search.result.order(:id).page(params[:page]).per(1000) 
+  	@search = CompanyUser.search(params[:q])
+  	@company_users = @search.result.order(:id).page(params[:page]).per(1000) 
     respond_to do |format|
       format.html
-      format.csv { send_data @hrc_users.as_csv } 
+      format.csv { send_data @company_users.as_csv } 
     end
   end
   
   def update
     @user = User.find(params[:id])
-    if params[:hrc_user][:password].blank? 
-      params[:hrc_user].delete(:password)
-      params[:hrc_user].delete(:password_confirmation) 
+    if params[:company_user][:password].blank? 
+      params[:company_user].delete(:password)
+      params[:company_user].delete(:password_confirmation) 
     end
     
     if @user.update!(user_params)
@@ -26,41 +26,41 @@ class CompanyUsersController < UsersController
   end 
   
   def show 
-    @hrc_user = HrcUser.find(params[:id]) 
+    @company_user = CompanyUser.find(params[:id]) 
     
-    @active = @hrc_user.loads.where(["status_name = ?", "Active"])
+    @active = @company_user.loads.where(["status_name = ?", "Active"])
   	@search_active = @active.search(params[:q])
   	@active_loads = @search_active.result.order(:id).page(params[:page]).per(1000) 
   	
-    @complete = @hrc_user.loads.where(["status_name = ?", "Complete"])
+    @complete = @company_user.loads.where(["status_name = ?", "Complete"])
   	@search_complete = @complete.search(params[:q])
   	@completed_loads = @search_complete.result.order(:id).page(params[:page]).per(1000) 
   	
-    @paid = @hrc_user.loads.where(["status_name = ?", "Paid"])
+    @paid = @company_user.loads.where(["status_name = ?", "Paid"])
   	@search_paid = @paid.search(params[:q])
   	@paid_loads = @search_paid.result.order(:id).page(params[:page]).per(1000) 
   	
-    @cancelled = @hrc_user.loads.where(["status_name = ?", "Complete"])
+    @cancelled = @company_user.loads.where(["status_name = ?", "Complete"])
   	@search_cancelled = @cancelled.search(params[:q])
   	@completed_loads = @search_cancelled.result.order(:id).page(params[:page]).per(1000) 
   	
   end
   
-  def hrc_dashboard 
-    @hrc_user = current_hrc_user
-    @active = @hrc_user.loads.where(["status_name = ?", "Active"])
+  def company_dashboard 
+    @company_user = current_company_user
+    @active = @company_user.loads.where(["status_name = ?", "Active"])
   	@search_active = @active.search(params[:q])
   	@active_loads = @search_active.result.order(:id).page(params[:page]).per(1000) 
   	
-    @complete = @hrc_user.loads.where(["status_name = ?", "Complete"])
+    @complete = @company_user.loads.where(["status_name = ?", "Complete"])
   	@search_complete = @complete.search(params[:q])
   	@completed_loads = @search_complete.result.order(:id).page(params[:page]).per(1000) 
   	
-    @paid = @hrc_user.loads.where(["status_name = ?", "Paid"])
+    @paid = @company_user.loads.where(["status_name = ?", "Paid"])
   	@search_paid = @paid.search(params[:q])
   	@paid_loads = @search_paid.result.order(:id).page(params[:page]).per(1000) 
   	
-    @cancelled = @hrc_user.loads.where(["status_name = ?", "Complete"])
+    @cancelled = @company_user.loads.where(["status_name = ?", "Complete"])
   	@search_cancelled = @cancelled.search(params[:q])
   	@completed_loads = @search_cancelled.result.order(:id).page(params[:page]).per(1000)
   	
@@ -73,14 +73,14 @@ class CompanyUsersController < UsersController
   end
   
   def import
-    HrcUser.import(params[:file])
-    redirect_to hrc_users_path, notice: 'HRC Users have been uploaded.'
+    CompanyUser.import(params[:file])
+    redirect_to company_users_path, notice: 'HRC Users have been uploaded.'
   end   
   
 private
 
   def user_params
-    params.require(:hrc_user).permit(:password, 
+    params.require(:company_user).permit(:password, 
                                      :password_confirmation,
                                      :current_password,
                                      :email,

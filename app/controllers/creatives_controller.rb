@@ -3,8 +3,8 @@ class CreativesController < ApplicationController
   layout "creative"
 
   def index
-    if current_hrc_user
-      redirect_to hrc_dashboard_path
+    if current_company_user
+      redirect_to company_dashboard_path
     elsif current_driver_user
       redirect_to driver_dashboard_path
     elsif current_shipper_user 

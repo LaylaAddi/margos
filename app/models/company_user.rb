@@ -1,7 +1,7 @@
 class CompanyUser < User
   has_many :loads
   has_many :driver_users, through: :loads
-  ransack_alias :hrc_search_params, 
+  ransack_alias :company_search_params, 
   :first_name_or_last_name_or_email 
   mount_uploader :profile_image, UserProfileImageUploader  
   mount_uploader :profile_bg, UserBackgroundImageUploader  
@@ -17,7 +17,7 @@ class CompanyUser < User
   
 	def self.import(file)	
   	CSV.foreach(file.path, headers: true) do |row| 
-    	DHrcUser.create! row.to_hash
+    	CompanyUser.create! row.to_hash
   	end
   end  
 end

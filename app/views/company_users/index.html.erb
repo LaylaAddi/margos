@@ -1,17 +1,17 @@
 <h1>All HRC Users</h1>
-<%= paginate @hrc_users %> 
+<%= paginate @company_user_users %> 
 <%= search_form_for @search do |f| %>  
 <%= link_to "Reload", 
-hrc_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
+company_user_users_path, class: 'btn btn-primary btn-xs round'%>
 <br />
 <div>
-<%= f.label :hrc_search_params_cont, "Search" %>  
-<%= f.text_field :hrc_search_params_cont %>     
+<%= f.label :company_search_params_cont, "Search" %>  
+<%= f.text_field :company_search_params_cont %>     
 
 </div>
 <div>
 <br />            
-<%= f.submit "Search", class: 'btn btn-hrcsuccess btn-xs round' %> 
+<%= f.submit "Search", class: 'btn btn-success btn-xs round' %> 
 </div>
 <% end %>
 <table class="table table-bordered table-striped table-condensed table-responsive">
@@ -26,18 +26,18 @@ hrc_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
 		</tr>
 	</thead>
 	<tbody>
-	  <% @hrc_users.each do |hrc| %>
+	  <% @company_users.each do |company_user| %>
 		<tr>
-			<td><%= hrc.id %></td>
+			<td><%= company_user.id %></td>
 			
-			<td><%= link_to hrc_user_path(hrc) do %>
-			  <%= hrc.full_name %>
+			<td><%= link_to company_user_user_path(company_user) do %>
+			  <%= company_user.full_name %>
 			  <% end %>
 			</td>
 			
-			<td><%= hrc.email %></td>
-			<td><%= hrc.type_of_user %></td>
-			<td><%= hrc.employment_status %></td> 
+			<td><%= company_user.email %></td>
+			<td><%= company_user.type_of_user %></td>
+			<td><%= company_user.employment_status %></td> 
 <td>
   <div class="btn-group pull-right activity-actions">
     <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
@@ -45,8 +45,8 @@ hrc_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
     <span class="sr-only">Toggle Dropdown</span>
     </button>
     <ul class="dropdown-menu dropdown-menu-right" role="menu">
-      <li><%= link_to 'Show', hrc %></li>
-      <li><%= link_to 'Edit', edit_hrc_user_path(hrc) %></li>
+      <li><%= link_to 'Show', company_user %></li>
+      <li><%= link_to 'Edit', edit_company_user_user_path(company_user) %></li>
       <li class="divider"></li>
 
     </ul>
@@ -59,7 +59,7 @@ hrc_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
 <div class="row">
   <div class="col-sm-4">
     <h4>Import HRC Users</h4>
-    <%= form_tag import_hrc_users_path, multipart: true do %>
+    <%= form_tag import_company_user_users_path, multipart: true do %>
     <%= file_field_tag :file, class: "btn btn-success btn-xs" %><br>
     <%= submit_tag "Upload HRC Users", class: "btn btn-info btn-xs" %>
     <% end %>
@@ -67,7 +67,7 @@ hrc_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
   </div>
   <div class="col-sm-4">
     <h4>Export HRC Users</h4>
-    <%= link_to "Download HRC Users", hrc_users_path(format: :csv), class: "btn btn-primary btn-xs" %> 
+    <%= link_to "Download HRC Users", company_user_users_path(format: :csv), class: "btn btn-primary btn-xs" %> 
   </div>
   <div class="col-sm-4">
 

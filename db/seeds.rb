@@ -124,12 +124,12 @@ city_data = [
   ]
   
 
-steve = HrcUser.create(
+steve = CompanyUser.create(
   password: "password",
   password_confirmation: "password", 
   first_name: "Steve",
   last_name: "Chesnowtiz",
-  email: "steve@hrclogistics.com",
+  email: "steve@margoscargo.com",
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
   telephone: Faker::PhoneNumber.phone_number,
@@ -143,12 +143,12 @@ steve = HrcUser.create(
   )
   puts steve.inspect
   
-kathy = HrcUser.create(
+kathy = CompanyUser.create(
   password: "password",
   password_confirmation: "password", 
   first_name: "Kathy",
   last_name: "Rodriguez",
-  email: "kathy@hrclogistics.com",
+  email: "kathy@margoscargo.com",
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
   telephone: Faker::PhoneNumber.phone_number,
@@ -168,7 +168,7 @@ leadfoot = DriverUser.create(
   password_confirmation: "password", 
   first_name: "Joe The Driver",
   last_name: "Leadfoot",
-  email: "leadfoot@hrclogistics.com", 
+  email: "leadfoot@margoscargo.com", 
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
   telephone: Faker::PhoneNumber.phone_number,
@@ -189,7 +189,7 @@ leadfoot = DriverUser.create(
   password_confirmation: "password", 
   first_name: "Slow",
   last_name: "Moe",
-  email: "slowmoe@hrclogistics.com", 
+  email: "slowmoe@margoscargo.com", 
   cellphone: "7169864010",  
   street: Faker::Address.street_name,
   telephone: Faker::PhoneNumber.phone_number,
@@ -204,7 +204,7 @@ leadfoot = DriverUser.create(
   driver_rpm: 0.00
   )
   puts slowmoe.inspect
-  
+   
   
 # 10.times do
 # hrcuser = HrcUser.create(

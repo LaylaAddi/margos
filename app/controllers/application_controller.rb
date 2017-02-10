@@ -12,15 +12,15 @@ class ApplicationController < ActionController::Base
     @driver_list = DriverUser.where(["employment_status = ?", "active"]).order('first_name ASC')   
   end
   
-  devise_group :user, contains: [:hrc_user, :shipper_user, :driver_user] 
-  devise_group :hrc_user, contains: [:hrc_user] 
+  devise_group :user, contains: [:company_user, :shipper_user, :driver_user] 
+  devise_group :company_user, contains: [:company_user] 
   devise_group :shipper_user, contains: [:shipper_user] 
   devise_group :driver_user, contains: [:driver_user] 
   before_action :authenticate_user!
 
   private
-    def validate_hrc_user
-      if !current_hrc_user
+    def validate_company_user
+      if !current_company_user
         redirect_to root_path
       flash[:danger] = " #{current_user.first_name}, The function requested does not exist or you are not authorized for access."
       end
