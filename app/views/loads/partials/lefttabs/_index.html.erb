@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h3>
         <%= link_to @load.company_profile.company_name, 
-          company_profile_path(@company_profile) if current_hrc_user %>
+          company_profile_path(@company_profile) if current_company_user %>
         <br />
         <% if @load.miles == 0 %>
         <h3 class="text-red">

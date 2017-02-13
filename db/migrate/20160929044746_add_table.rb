@@ -31,9 +31,10 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.decimal :booking_fee
       t.decimal :rate_told_to_driver 
       t.decimal :percent_deducted      
-      t.decimal :total_hrc_expenses
+      t.decimal :total_company_expenses
       t.decimal :rate_to_driver
       t.decimal :rate_after_percent
+      t.decimal :driver_cents_pm
       t.decimal :rate_after_booking_fee 
       t.decimal :agent_fee, default: 0.00 
       t.date :pick_up_date
@@ -45,11 +46,11 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :delivery_notes      
       t.string :equipment_type
       t.string :status_name 
-      t.integer :hrc_user_id, index: true
+      t.integer :company_user_id, index: true
       t.integer :driver_user_id, index: true
       t.integer :company_profile_id, index: true       
       t.string :updated_by
-      t.string :special_instructions
+      t.string :special_instructions 
       t.string :dimentions
       t.string :origin_street
       t.string :origin_city  
@@ -71,9 +72,11 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :receiver_company_name
       t.integer :driver_statement_id, index: true
       t.decimal :rate_to_driver_after_factor_fees
+
       t.timestamps
     end
-    
+                               
+                                    
     create_table :addresses do |t|
       t.integer :address_category_id, index: true 
       t.string :type
@@ -95,7 +98,7 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.integer :truck_id, index: true 
       t.integer :driver_checkin_id, index: true 
       t.integer :driver_user_id, index: true 
-      t.integer :hrc_user_id, index: true  
+      t.integer :company_user_id, index: true  
    
       t.timestamps
     end
@@ -242,7 +245,7 @@ class AddTable < ActiveRecord::Migration[5.0]
     end
     
     create_table :trucks do |t|
-      t.boolean :belongs_to_hrc, default: false
+      t.boolean :belongs_to_company, default: false
       t.string :year
       t.string :make
       t.string :model
@@ -342,7 +345,7 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :sms_message_sid
       t.string :num_media
       t.string :sms_sid 
-      t.integer :hrc_user_id, index: true
+      t.integer :company_user_id, index: true
       t.integer :driver_user_id, index: true
 
       t.timestamps

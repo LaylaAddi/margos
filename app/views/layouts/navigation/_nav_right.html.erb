@@ -1,14 +1,14 @@
-<% if current_hrc_user %>  
+<% if current_company_user %>  
 
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-      aria-haspopup="true" aria-expanded="false"><%= current_hrc_user.full_name %> 
+      aria-haspopup="true" aria-expanded="false"><%= current_company_user.full_name %> 
     <span class="caret"></span></a>
     <ul class="dropdown-menu">
-      <li><%= link_to "Edit My Profile", edit_hrc_user_registration_path %></li>
+      <li><%= link_to "Edit My Profile", edit_company_user_registration_path %></li>
       <li role="separator" class="divider"></li>
-      <li><%= link_to "End My Session", destroy_hrc_user_session_path,
+      <li><%= link_to "End My Session", destroy_company_user_session_path,
         method: :delete %></li>
     </ul>
   </li>

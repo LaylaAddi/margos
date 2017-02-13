@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :validate_hrc_user, only: [:edit, :update, :destroy, :index]
+  before_action :validate_company_user, only: [:edit, :update, :destroy, :index]
   
 
   def index
@@ -21,8 +21,8 @@ class UsersController < ApplicationController
   end 
 end  
     private
-    def validate_hrc_user
-      if !current_hrc_user
+    def validate_company_user
+      if !current_company_user
         redirect_to root_path
       flash[:danger] = " #{current_user.first_name}, The function requested does not exist or you are not authorized for access."
       end

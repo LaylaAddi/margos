@@ -17,7 +17,7 @@
       <!-- Nav tabs -->
       <ul class="nav nav-pills">
         <li class="active"><a href="#financials" data-toggle="tab">Financials</a></li>
-        <% if current_hrc_user %>
+        <% if current_company_user %>
         <li><a href="#newexpense" data-toggle="tab">New Transaction</a></li>
         <% end %> 
 
@@ -27,7 +27,7 @@
         <div class="tab-pane fade in active" id="financials">
           <%= render "loads/partials/righttabs/financials" %>
         </div>
-        <% if current_hrc_user %>
+        <% if current_company_user %>
         <div class="tab-pane fade" id="newexpense"> 
           <%= render "loads/partials/righttabs/new_expense" %>
         </div>

@@ -176,13 +176,30 @@ leadfoot = DriverUser.create(
   zip: "123456",
   emergency_contact: Faker::Name.first_name,
   emergency_contact_number: Faker::PhoneNumber.phone_number,
-  dispatcher: "true",
-  admin: "true",
   employment_status: "active",
   company_driver: true,
   driver_rpm: 0.40
   )
   puts leadfoot.inspect
+  
+stumpy = DriverUser.create(
+  password: "password",
+  password_confirmation: "password", 
+  first_name: "Stumpy",
+  last_name: "McGillacuddy",
+  email: "stumpy@margoscargo.com", 
+  cellphone: "7169864010",  
+  street: Faker::Address.street_name,
+  telephone: Faker::PhoneNumber.phone_number,
+  city: city_data.sample,
+  zip: "123456",
+  emergency_contact: Faker::Name.first_name,
+  emergency_contact_number: Faker::PhoneNumber.phone_number,
+  employment_status: "active",
+  company_driver: true,
+  driver_rpm: 0.22
+  )
+  puts stumpy.inspect
   
   slowmoe = DriverUser.create(
   password: "password",
@@ -197,14 +214,30 @@ leadfoot = DriverUser.create(
   zip: "123456",
   emergency_contact: Faker::Name.first_name,
   emergency_contact_number: Faker::PhoneNumber.phone_number,
-  dispatcher: "true",
-  admin: "true",
   employment_status: "active",
   owner_operator: true,
   driver_rpm: 0.00
   )
   puts slowmoe.inspect
-   
+  
+joe = DriverUser.create(
+  password: "password",
+  password_confirmation: "password", 
+  first_name: "Joe",
+  last_name: "Sixpack",
+  email: "joe@margoscargo.com", 
+  cellphone: "7169864010",  
+  street: Faker::Address.street_name,
+  telephone: Faker::PhoneNumber.phone_number,
+  city: city_data.sample,
+  zip: "123456",
+  emergency_contact: Faker::Name.first_name,
+  emergency_contact_number: Faker::PhoneNumber.phone_number,
+  employment_status: "active",
+  owner_operator_pbm: true,
+  driver_rpm: 1.00
+  )
+  puts joe.inspect 
   
 # 10.times do
 # hrcuser = HrcUser.create(

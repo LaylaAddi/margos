@@ -1,0 +1,42 @@
+<script>
+$(document).ready(function() {
+    $('select[id="select-driver"]').change(function() {
+        var str = $('select[id="select-driver"] option:selected').text();
+        if (str.indexOf("company") >= 0) { 
+            $('#onlyCompany').fadeOut( "slow" );
+        } else {
+            $('#onlyCompany').fadeIn( "slow" ); 
+        }
+    });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#load_has_multiple_pd").click(function(){
+        $("#idToHide, #idToHide2, #idToHide3").fadeToggle( "slow", "linear" ); 
+    });
+});
+</script>
+
+// <script>
+// $(document).ready(function(){     
+//   var dropValue = $("#select-driver option:selected").text();
+//     $('#load_commodity').val(dropValue);                 
+// }); 
+// </script>
+
+
+    
+<script>
+$(document).ready(function(){ 
+  $(function() {     
+    $("#select-driver").change(function() {  
+      $('#load_driver_user_id').val(this.value); 
+      var dropValue = $("#load_driver_user_id option:selected").text();
+      $('#load_commodity').val(dropValue);  
+      $('#load_driver_cents_pm').val(dropValue); 
+    });
+  });
+});
+</script>

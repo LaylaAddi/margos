@@ -1,6 +1,6 @@
 class LoadsController < ApplicationController
   before_action :validate_admin_user, only: [:destroy]
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :new_multiple, :destroy] 
+  before_action :validate_company_user, only: [:edit, :update, :new, :new_multiple, :destroy] 
   before_action :set_load, only: [:show, :edit, :update, :destroy]
 
 
@@ -65,7 +65,7 @@ class LoadsController < ApplicationController
 
 
   def new
-    @load = current_hrc_user.loads.build 
+    @load = current_company_user.loads.build 
     @load.load_origin_addresses.build
     @driver = DriverUser.where(["employment_status = ?", "active"]) 
     @company_profile = CompanyProfile.all
@@ -76,7 +76,7 @@ class LoadsController < ApplicationController
   def edit
     @load_driver = @load.driver_user
     @driver = DriverUser.where(["employment_status = ?", "active"])
-    @hrc_user = current_hrc_user
+    @company_user = current_company_user
     @company_profile = CompanyProfile.all   
     @load_origin_addresses = @load.load_origin_addresses.order('created_at ASC')
 
@@ -114,7 +114,7 @@ class LoadsController < ApplicationController
   def create
     @driver = DriverUser.where(["employment_status = ?", "active"]) 
     @company_profile = CompanyProfile.all  
-    @load = current_hrc_user.loads.build(load_params)
+    @load = current_company_user.loads.build(load_params)
 
     respond_to do |format|
       if @load.save
@@ -164,7 +164,7 @@ class LoadsController < ApplicationController
 
   private
     def validate_admin_user
-      if !current_hrc_user.admin? 
+      if !current_company_user.admin? 
         redirect_to root_path
       flash[:danger] = " #{current_user.first_name}, The function requested does not exist or you are not authorized for access."
       end
@@ -196,6 +196,7 @@ class LoadsController < ApplicationController
                                     :delivery_time,
                                     :equipment_type, 
                                     :status_name,
+                                    :company_user_id,
                                     :driver_user_id,
                                     :updated_by,
                                     :pick_up_notes,
@@ -223,7 +224,7 @@ class LoadsController < ApplicationController
                                     :company_profile_id,
                                     :broker_shipper_load_id,
                                     :delivery_time_notes,
-                                    :total_hrc_expenses,
+                                    :total_company_expenses,
                                     :booking_fee,
                                     :invoice_price,
                                     :driver_statement_id,
@@ -232,6 +233,10 @@ class LoadsController < ApplicationController
                                     :rate_after_booking_fee,
                                     :rate_to_driver_after_factor_fees, 
                                     :agent_fee, 
+                                    :load_by_company_driver,
+                                    :load_by_owner_not_paid_by_mile,
+                                    :load_by_owner_paid_by_mile,
+                                    :driver_cents_pm, 
                                     load_origin_addresses_attributes: 
                                       [
                                       :street,

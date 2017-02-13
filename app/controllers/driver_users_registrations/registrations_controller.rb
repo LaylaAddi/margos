@@ -22,7 +22,7 @@ class DriverUsersRegistrations::RegistrationsController < Devise::RegistrationsC
                                           :profile_image,
                                           :emergency_contact,
                                           :emergency_contact_number,
-                                          :time_zone 
+                                          :time_zone
                                           )
   end
 
@@ -48,7 +48,9 @@ class DriverUsersRegistrations::RegistrationsController < Devise::RegistrationsC
                                           :time_zone,
                                           :flat_rpm_driver, 
                                           :driver_rpm,
-                                          :company_driver 
+                                          :company_driver,
+                                          :owner_operator_pbm,
+                                          :owner_operator
                                           )
                               
                               

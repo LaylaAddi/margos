@@ -1,7 +1,7 @@
 <h1>Completed Loads</h1>
  <%= link_to "Create Statement", 
  new_driver_user_driver_statement_path(@driver),
- class: 'btn btn-hrcprimary btn-xs round'if current_hrc_user %>
+ class: 'btn btn-primary btn-xs round'if current_company_user %>
 <table class="table table-bordered table-striped table-condensed table-responsive">
 	<thead>
 		<tr>
@@ -23,7 +23,7 @@
     <% debit_running_total = 0.00 %>
     <% credit_running_total = 0.00 %>
     <% expense_running_total = 0.00 %>
-    <% hrc_load_running_total = 0.00 %>
+    <% company_load_running_total = 0.00 %>
     <% total_miles = 0 %>
     <% driver_load_running_total = 0.00 %>
     <% booking_fee_running_total = 0.00 %>
@@ -69,7 +69,7 @@
       <td><%= load.status_name %></td>
 
     </tr>
-    <% hrc_load_running_total = hrc_load_running_total + load.invoice_price %> 
+    <% company_load_running_total = company_load_running_total + load.invoice_price %> 
     <% booking_fee_running_total = booking_fee_running_total + load.booking_fee %> 
     <% driver_load_running_total = driver_load_running_total + load.rate_to_driver_after_factor_fees %> 
     <% total_miles = total_miles + load.miles %>
@@ -78,7 +78,7 @@
 </table>
 <br>
 <% driver_net = driver_load_running_total - expense_running_total %>
-<% hrc_net = hrc_load_running_total - driver_load_running_total %>
+<% company_net = company_load_running_total - driver_load_running_total %>
 <% debit_total = debit_running_total - credit_running_total %>
 <% rate_after_expenses = driver_load_running_total - debit_total%>
 <br />

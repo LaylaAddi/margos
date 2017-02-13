@@ -1,5 +1,5 @@
 git add -A
-git commit -m "updating table and views" 
+git commit -m "update to load new JS setting drivers" 
 git push -u origin pages
 
  

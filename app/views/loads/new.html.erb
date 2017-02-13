@@ -4,6 +4,7 @@
 <h3>New Load</h3>
 <%= simple_form_for(@load, html: { class: "input-sm" }) do |f| %>
 <%= f.error_notification %>
+
 <div class="col-sm-12 col-sm-offset-0 shadow round animated">
   <div class="well animated">
     <div class="row">
@@ -11,7 +12,7 @@
         <div class="form-group input-group">  
           <span class="input-group-addon"><i class="fa fa-truck"></i></span>
           <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
-            :id, :driver_name_and_type, include_blank: "Select Driver"  %>   
+            :id, :driver_name_and_type, {include_blank: "Select Driver"}, {id: "select-driver"}   %>   
         </div>
       </div>
       <div class="col-sm-4">
@@ -37,7 +38,19 @@
           <%= f.input :invoice_price, label: "Invoice Price"  %> 
         </div>
       </div>
-      <div id="onlyCompany">
+      
+      
+
+      <div class="col-sm-3">
+        <div class="form-group input-group">
+          <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+            :id, :driver_rpm %> 
+<%= f.input :driver_cents_pm %>
+
+        </div>
+      </div>
+
+      <div id="onlyCompany"><!--shows inputs for company driver that gets flat rate per load-->
       <div class="col-sm-3">
         <div class="form-group input-group">
           <%= f.input :rate_to_driver, label: "Rate to O/O"  %>  
@@ -47,10 +60,9 @@
         <div class="form-group input-group">
           <%= f.input :percent_deducted, collection:
             Load::PercentageSelect, label: "Percentage" %>
-          <!--<span class="input-group-addon"><i class="fa fa-percent"></i></span>-->
         </div>
       </div>
-      </div><!-- end "only Company" JQ-->
+      </div><!-- end "only Company" JQ--><!--end div for shows inputs for company driver that gets flat rate per load-->
       <div class="col-sm-3">
         <div class="form-group input-group">
           <!--<span class="input-group-addon"><i class="fa fa-clock-o"></i> </span>-->
@@ -175,23 +187,6 @@
 </div>
 <div id="idToHide3"><%= render "new_map" %></div>
 </div>
-<script>
-$(document).ready(function() {
-    $('select[id="load_driver_user_id"]').change(function() {
-        var str = $('select[id="load_driver_user_id"] option:selected').text();
-        if (str.indexOf("company") >= 0) { 
-            $('#onlyCompany').fadeToggle( "slow", "linear" ); 
-        } else {
-            $('#onlyCompany').fadeToggle( "slow", "linear" ); 
-        }
-    });
-});
-</script>
-<script>
-$(document).ready(function(){
-    $("#load_has_multiple_pd").click(function(){
-        $("#idToHide, #idToHide2, #idToHide3").fadeToggle( "slow", "linear" ); 
-    });
-});
-</script>
+
+<%= render "new_edit_js" %><!--JS for showing and removing inputs-->
 

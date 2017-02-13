@@ -69,7 +69,7 @@
             <%= f.input :profile_image, as: :file, label: "Profile Background" %> 
           </div>
           <div class="col-md-4">
-            <%= f.input :admin %>
+            <%= f.input :admin %>                                          
             <%= f.input :company_profile_admin %>
             <%= f.input :dispatcher %>
             <%= f.input :office %>
@@ -77,8 +77,9 @@
             <%= f.input :shipping_receiving %>
             <%= f.input :employment_status, collection: ApplicationRecord::EmploymentStatus %>
             <% if @user.type == "DriverUser" %>
-            <%= f.input :owner_operator %>
-            <%= f.input :company_driver %>
+            <%= f.input :company_driver %>                              
+            <%= f.input :owner_operator %>                              
+            <%= f.input :owner_operator_pbm %>
             <% if @user.driver_rpm.present? %>
             <strong> Current Driver Rate
             <%= number_to_currency(@user.driver_rpm)  %>

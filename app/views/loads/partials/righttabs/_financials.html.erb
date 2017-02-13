@@ -116,7 +116,7 @@
         <%= number_to_currency(@load.grpm) %>
       </td>
       <td>
-        <%= number_to_currency(@load.hrc_rpm) %>
+        <%= number_to_currency(@load.company_rpm) %>
       </td>
     </tr>
   </tbody>
@@ -145,7 +145,7 @@ Driver Section
     <tr>
       <td>
         <% if @driver.company_driver?  %>
-        <%= number_to_currency(@load.rate_after_booking_fee)  %>/mile
+        <%= number_to_currency(@load.driver_cents_pm)  %>/mile
         <% end %>
         <% if @driver.owner_operator?  %>
         <%= number_to_currency(@load.rate_to_driver_after_factor_fees)  %>
@@ -156,7 +156,7 @@ Driver Section
       </td>
       <td>
         <% if @driver.company_driver?  %>
-        <%= number_to_currency(@load.rate_after_booking_fee * @load.miles) %>
+        <%= number_to_currency(@load.driver_cents_pm * @load.miles) %>
         <% end %>
         <% if @driver.owner_operator?  %>
         <%= number_to_currency(@load.rate_to_driver_after_factor_fees / @load.miles) %>

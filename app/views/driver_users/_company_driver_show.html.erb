@@ -14,7 +14,7 @@
               <small>
                 (<%= @driver.type_of_user %>) 
                 <span class="text-red">
-                rate <%= number_to_currency(@driver.driver_rpm) if current_hrc_user %>/mile
+                rate <%= number_to_currency(@driver.driver_rpm) if current_company_user %>/mile
                  
                 </span>
               </small>
@@ -24,7 +24,7 @@
             <div class="row">
               <div class="col-xs-6">
                 <%= link_to "Update Driver", edit_user_path(@driver), 
-                class: "btn btn-success btn-sm round" if current_hrc_user %> 
+                class: "btn btn-success btn-sm round" if current_company_user %> 
               </div>
               <div class="col-xs-6">
               </div>
@@ -145,5 +145,5 @@
     </div>
   </div>
 </div>
-<%= link_to "Edit", edit_user_path(@driver), class: "btn btn-hrcprimary round btn-xs" %>
-<%= link_to "All Users", users_path, class: "btn btn-hrcsuccess round btn-xs" %>
+<%= link_to "Edit", edit_user_path(@driver), class: "btn btn-primary round btn-xs" %>
+<%= link_to "All Users", users_path, class: "btn btn-success round btn-xs" %>

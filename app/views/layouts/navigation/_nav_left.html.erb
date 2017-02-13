@@ -1,5 +1,5 @@
 
-<% if current_hrc_user %> 
+<% if current_company_user %> 
 <li> 
   <%= link_to app_variables_path do %>
     <span class="fa fa-user-plus"></span> 
@@ -37,7 +37,7 @@
     <li role="separator" class="divider"></li>
     <li><%= link_to "Registered Brokers", shipper_users_path %></li>
     <li role="separator" class="divider"></li>
-    <li><%= link_to "HRC Users", hrc_users_path %></li>
+    <li><%= link_to "HRC Users", company_users_path %></li>
     <li role="separator" class="divider"></li>
     <li><%= link_to "All Users", users_path %></li>
   </ul>

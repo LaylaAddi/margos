@@ -2,7 +2,7 @@
 <%= paginate @drivers %>
 <%= search_form_for @search do |f| %>  
 <%= link_to "Reload", 
-driver_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
+driver_users_path, class: 'btn btn-primary btn-xs round'%>
 <br />
 <div>
 <%= f.label :driver_search_params_cont, "Search" %>  
@@ -11,7 +11,7 @@ driver_users_path, class: 'btn btn-hrcprimary btn-xs round'%>
 </div>
 <div>
 <br />            
-<%= f.submit "Search", class: 'btn btn-hrcsuccess btn-xs round' %> 
+<%= f.submit "Search", class: 'btn btn-success btn-xs round' %> 
 </div>
 <% end %>
 <table class="table table-bordered table-striped table-condensed table-responsive">

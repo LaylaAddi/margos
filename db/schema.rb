@@ -42,13 +42,13 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.integer  "truck_id"
     t.integer  "driver_checkin_id"
     t.integer  "driver_user_id"
-    t.integer  "hrc_user_id"
+    t.integer  "company_user_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["address_category_id"], name: "index_addresses_on_address_category_id", using: :btree
+    t.index ["company_user_id"], name: "index_addresses_on_company_user_id", using: :btree
     t.index ["driver_checkin_id"], name: "index_addresses_on_driver_checkin_id", using: :btree
     t.index ["driver_user_id"], name: "index_addresses_on_driver_user_id", using: :btree
-    t.index ["hrc_user_id"], name: "index_addresses_on_hrc_user_id", using: :btree
     t.index ["load_id"], name: "index_addresses_on_load_id", using: :btree
     t.index ["trailer_id"], name: "index_addresses_on_trailer_id", using: :btree
     t.index ["truck_id"], name: "index_addresses_on_truck_id", using: :btree
@@ -243,9 +243,10 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.decimal  "booking_fee"
     t.decimal  "rate_told_to_driver"
     t.decimal  "percent_deducted"
-    t.decimal  "total_hrc_expenses"
+    t.decimal  "total_company_expenses"
     t.decimal  "rate_to_driver"
     t.decimal  "rate_after_percent"
+    t.decimal  "driver_cents_pm"
     t.decimal  "rate_after_booking_fee"
     t.decimal  "agent_fee",                        default: "0.0"
     t.date     "pick_up_date"
@@ -257,7 +258,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "delivery_notes"
     t.string   "equipment_type"
     t.string   "status_name"
-    t.integer  "hrc_user_id"
+    t.integer  "company_user_id"
     t.integer  "driver_user_id"
     t.integer  "company_profile_id"
     t.string   "updated_by"
@@ -286,9 +287,9 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.index ["company_profile_id"], name: "index_loads_on_company_profile_id", using: :btree
+    t.index ["company_user_id"], name: "index_loads_on_company_user_id", using: :btree
     t.index ["driver_statement_id"], name: "index_loads_on_driver_statement_id", using: :btree
     t.index ["driver_user_id"], name: "index_loads_on_driver_user_id", using: :btree
-    t.index ["hrc_user_id"], name: "index_loads_on_hrc_user_id", using: :btree
   end
 
   create_table "mcs", force: :cascade do |t|
@@ -402,12 +403,12 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "sms_message_sid"
     t.string   "num_media"
     t.string   "sms_sid"
-    t.integer  "hrc_user_id"
+    t.integer  "company_user_id"
     t.integer  "driver_user_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["company_user_id"], name: "index_messages_on_company_user_id", using: :btree
     t.index ["driver_user_id"], name: "index_messages_on_driver_user_id", using: :btree
-    t.index ["hrc_user_id"], name: "index_messages_on_hrc_user_id", using: :btree
   end
 
   create_table "miles", force: :cascade do |t|
@@ -484,7 +485,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
   end
 
   create_table "trucks", force: :cascade do |t|
-    t.boolean  "belongs_to_hrc", default: false
+    t.boolean  "belongs_to_company", default: false
     t.string   "year"
     t.string   "make"
     t.string   "model"
@@ -503,8 +504,8 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "plate"
     t.string   "plate_state"
     t.integer  "driver_user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.index ["driver_user_id"], name: "index_trucks_on_driver_user_id", using: :btree
   end
 
@@ -532,6 +533,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.boolean  "maintenance",              default: false
     t.boolean  "company_driver",           default: false
     t.boolean  "owner_operator",           default: false
+    t.boolean  "owner_operator_pbm",       default: false
     t.boolean  "shipping_receiving",       default: false
     t.decimal  "driver_rpm",               default: "0.0"
     t.string   "employment_status",        default: "not_active"

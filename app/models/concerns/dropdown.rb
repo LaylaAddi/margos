@@ -216,7 +216,6 @@ CompanyProfileMembershipStatus =
  
  DriverRpm =
     [
-    "Set Rate", 
     "0.00", 
     ".35", 
     ".36",
@@ -232,6 +231,17 @@ CompanyProfileMembershipStatus =
     ".46",
     ".47",
     ".48"
+    ]
+    
+  DriverRpm2 =
+    [
+    0.00, 
+    0.15,
+    0.20,
+    0.25,
+    0.30,
+    0.32,  
+    0.48
     ]
     
  PickupDelivery =

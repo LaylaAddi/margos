@@ -1,6 +1,6 @@
 class DriverUsersController < UsersController 
   include ApplicationHelper
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy]
   
   def index
   	@search = DriverUser.search(params[:q])
@@ -31,7 +31,7 @@ class DriverUsersController < UsersController
   
   def show 
     @driver = DriverUser.find(params[:id]) 
-    @hrc_user = current_hrc_user
+    @company_user = current_company_user
   	@driver_statements = @driver.driver_statements if !nil? 
     @active = @driver.loads.where(["status_name = ?", "Active"])
   	@search_active = @active.search(params[:q])
@@ -191,7 +191,8 @@ class DriverUsersController < UsersController
                                         :driver_rpm,
                                         :time_zone,
                                         :company_driver,
-                                        :owner_operator
+                                        :owner_operator,
+                                        :owner_operator_pbm
                                         )
                               
   end

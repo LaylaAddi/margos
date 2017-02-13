@@ -1,7 +1,7 @@
 class Load < ApplicationRecord
   
 
-  belongs_to :hrc_user 
+  belongs_to :company_user 
   belongs_to :driver_user 
   belongs_to :company_profile 
  
@@ -71,7 +71,7 @@ class Load < ApplicationRecord
     self.booking_fee + ddbop
   end
   
-  def hrc_rpm
+  def company_rpm
     booking_fee_plus_percent_in_dollars / self.miles 
   end
   
