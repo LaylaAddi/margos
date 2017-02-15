@@ -8,13 +8,15 @@
       <th>ID</th>
       <th>Booked On</th>
       <th>Description</th>
-      <th>Driver</th>
-      <th>Debits</th>
-      <th>Credits</th>
-      <th>Load Size</th>
       <th>Rate</th>
       <th>Distance (Miles)</th>
+      <th>Gross Pay</th>
+      <th>Debits</th>
+      <th>Credits</th>
+
+
       <th>Trailer Type</th>
+      <th>Load Size</th>
       <th>Status</th>
 		</tr>
 	</thead>
@@ -25,8 +27,7 @@
     <% expense_running_total = 0.00 %>
     <% company_load_running_total = 0.00 %>
     <% total_miles = 0 %>
-    <% driver_load_running_total = 0.00 %>
-    <% booking_fee_running_total = 0.00 %>
+    <% gross_driver_pay_running_total = 0.00 %>
     <% @completed_loads.each do |load| %>
     <tr>
       <td>
@@ -37,16 +38,12 @@
       <td><%= (load.created_at.strftime("%A %B %-d, %Y")) %></td> 
       <td>
         <%= link_to load do %>
-        <%= @title %> 
+        <%= load.title %>  
         <% end %>
       </td>
-      <td>
- 
-        <%= link_to driver_user_path(load.driver_user_id) do %>
-        <%= load.driver_user.full_name %>
-        <% end %>
-
-      </td>
+      <td><%= number_to_currency(load.driver_cents_pm) %></td> 
+      <td><%= load.miles %> </td>
+            <td><%= number_to_currency(load.driver_cents_pm * load.miles) %> </td>
       <td>
         <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance"  %> 
         <%= number_to_currency(transaction.debit) %> 
@@ -62,31 +59,21 @@
         <% end %>
         <% end %>
       </td>
-
-      <td><%= load.load_size %></td>
-
-      <td><%= number_to_currency(load.rate_after_booking_fee) %></td> 
-      <td><%= load.miles %> </td>
-
-
       <td><%= load.equipment_type %></td>
+      <td><%= load.load_size %></td>
       <td><%= load.status_name %></td>
 
     </tr>
-    <% company_load_running_total = company_load_running_total + load.invoice_price %> 
-    <% booking_fee_running_total = booking_fee_running_total + load.booking_fee %> 
-    <% driver_load_running_total = driver_load_running_total + load.rate_to_driver_after_factor_fees %> 
+    <% total_pay_per_mile = (load.driver_cents_pm * load.miles) %>
+    <% gross_driver_pay_running_total = gross_driver_pay_running_total + total_pay_per_mile %>
     <% total_miles = total_miles + load.miles %>
     <% end %>
   </tbody>
 </table>
 <br>
-<% driver_net = driver_load_running_total - expense_running_total %>
-<% company_net = company_load_running_total - driver_load_running_total %>
+<% driver_net = gross_driver_pay_running_total - expense_running_total %>
 <% debit_total = debit_running_total - credit_running_total %>
-<% rate_after_expenses = driver_load_running_total - debit_total%>
-<% cd_dollars_by_mile_total = (total_miles * @driver.driver_rpm) %>
-<% cd_net = (cd_dollars_by_mile_total - debit_total) %>
+<% cd_net = (gross_driver_pay_running_total - debit_total) %>
 <br />
 <br /> 
 <table class="table table-bordered table-striped table-condensed table-responsive">
@@ -94,7 +81,7 @@
 		<tr>
 
 			<th>Total Miles</th>
-			<th>Amount Before Expenses</th>
+			<th>Gross Pay</th>
 			<th>Debits</th>
 			<th>Credits</th>
 			<th>Debit/Credit Total</th>
@@ -104,7 +91,7 @@
 	<tbody>
 		<tr>
 			<td><%= total_miles %></td>
-			<td><%= number_to_currency(cd_dollars_by_mile_total) %></td>
+			<td><%= number_to_currency(gross_driver_pay_running_total) %></td>
 			<td><%= number_to_currency(debit_running_total) %></td>
 			<td><%= number_to_currency(credit_running_total) %></td>
 			<td>- <%= number_to_currency(debit_total) %></td>

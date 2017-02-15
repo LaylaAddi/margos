@@ -1,5 +1,5 @@
 git add -A
-git commit -m "update to load new JS setting drivers" 
+git commit -m "working on calculations" 
 git push -u origin pages
 
  

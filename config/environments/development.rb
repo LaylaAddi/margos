@@ -48,14 +48,20 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   config.textris_delivery_method = :twilio
+  
+  # !!!!!!!!!!! had to add this to allow requests when moved over to margos
+  
+  Rails.application.config.action_cable.allowed_request_origins = ['https://margos-chesnowitz.c9users.io']
+  
+  
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_cable.url = 'wss://trucksass-chesnowitz.c9users.io/cable'
-  config.action_cable.allowed_request_origins = [ 'https://trucksass-chesnowitz.c9users.io', 
-  /http:\/\/trucksass-chesnowitz.c9users.*/ ]
-
-config.action_mailer.default_url_options = { host: 'localhost:8080' } 
+  config.action_cable.url = 'wss://margos-chesnowitz.c9users.io/cable'
+  config.action_cable.allowed_request_origins = [ 'https://margos-chesnowitz.c9users.io', 
+  /http:\/\/margos-chesnowitz.c9users.*/ ]
+ 
+config.action_mailer.default_url_options = { host: 'localhost:8080' }  
 ActionMailer::Base.delivery_method = :smtp  
 ActionMailer::Base.smtp_settings = {            
   :address              => "smtp.zoho.com", 

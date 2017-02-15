@@ -1,3 +1,17 @@
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+input.bsInputSize[type="text"] {
+   height: 20px;
+   font-size: 12px;
+   line-height: 15px;
+   background-color: #e6ffff; 
+}
+
 .pad-top {
     padding-top: 80px;
 }

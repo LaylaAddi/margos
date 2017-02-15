@@ -1,11 +1,11 @@
 
 {
-  "name": "hrc",
-  "description": "rake the db ohh yeah",
+  "name": "margoscargo",
+  "description": "rake the db",
   "keywords": [
     "Trucking",
     "Carrier",
-    "hrclogistics.com"
+    "margoscargo.com"
   ],
   "scripts": {
     "dokku": {

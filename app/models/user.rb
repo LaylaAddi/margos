@@ -18,13 +18,19 @@ def cellphone=(cellphone)
 end
   def is_company_driver
     if self.company_driver == true
-      return "company"
+      return "Company Driver"
     end
   end
     
   def is_owner_operator
     if self.owner_operator == true 
-      return "owner"
+      return "Owner"
+    end 
+  end
+  
+  def is_owner_operator_pbm
+    if self.owner_operator_pbm == true 
+      return "Owner *PAID BY MILE" 
     end 
   end
 
@@ -34,7 +40,7 @@ end
   end
   
   def driver_name_and_type
-    "#{full_name} | #{is_company_driver} #{is_owner_operator}"
+    "#{full_name} | #{is_company_driver} #{is_owner_operator} #{is_owner_operator_pbm}"
   end
   
   def profile_admin_user

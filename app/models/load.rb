@@ -15,23 +15,26 @@ class Load < ApplicationRecord
   accepts_nested_attributes_for :load_origin_addresses
   accepts_nested_attributes_for :load_destination_addresses 
   before_validation :set_company_driver_rate, :set_company_driver_percent 
-  before_save :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
-  before_update :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
+  # before_save :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
+  # before_update :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
 
   
   before_validation :delivery_date, date: { after_or_equal_to: Proc.new { :pick_up_date }, 
   message: "(error) Delivery can't be before pick up" }, on: :create
   
+  # before_validation :delivery_date, date: { after_or_equal_to: Proc.new { :pick_up_date },  
+  # message: "(error) Delivery can't be before pick up" }, on: :update
+  
  
   
   validates_presence_of  :load_size, :percent_deducted, :pick_up_date,
   :equipment_type, :status_name, :driver_user_id, :company_profile, :percent_deducted,
-  :rate_to_driver, :invoice_price, :origin_street, :origin_city, :origin_state
+  :rate_to_owner_operator, :invoice_price, :origin_street, :origin_city, :origin_state
 
   validates :destination_street, :destination_city, :miles, :destination_state, :delivery_date,
   presence: true, unless: :has_multiple_pd?
-  validates :percent_deducted, presence: true, unless: :is_company_driver
-  validates_numericality_of :percent_deducted 
+  validates :percent_coverted_to_dollars, presence: true, unless: :is_company_driver
+
   ransack_alias :load_search_params,
   :driver_user_first_name_or_driver_user_last_name_or_origin_city_or_destination_city_or_origin_state_or_destination_state_or_company_profile_company_name_or_broker_shipper_load_id
  
@@ -42,20 +45,14 @@ class Load < ApplicationRecord
   end
   
   def set_company_driver_rate
-    self.rate_to_driver = 0.00 if is_company_driver
+    self.rate_to_owner_operator = 0.00 if is_company_driver
   end
   
   def set_company_driver_percent
     self.percent_deducted = 0.00 if is_company_driver
   end
 
-  def company_driver_rate
-    self.rate_after_booking_fee = driver_user.driver_rpm
-  end 
 
-  def set_booking_fee
-    self.booking_fee = self.invoice_price - self.rate_to_driver
-  end
 
 
   def grpm
@@ -64,7 +61,7 @@ class Load < ApplicationRecord
   
  
   def ddbop #dollars deducted based on percent
-   self.rate_to_driver * self.percent_deducted
+  self.rate_to_owner_operator * self.percent_deducted
   end
   
   def booking_fee_plus_percent_in_dollars
@@ -76,7 +73,7 @@ class Load < ApplicationRecord
   end
   
   def set_rate_to_driver_after_factor_fees
-   self.rate_to_driver_after_factor_fees = self.rate_to_driver - ddbop 
+  self.rate_to_driver_after_factor_fees = self.rate_to_company_driver - ddbop 
   end
   
 

@@ -25,7 +25,8 @@
       <!-- Tab panes -->
       <div class="tab-content">
         <div class="tab-pane fade in active" id="financials">
-          <%= render "loads/partials/righttabs/financials" %>
+          <%= render "loads/partials/righttabs/company_driver_financials" if @driver.company_driver? %>
+          <%= render "loads/partials/righttabs/owner_operator_financials" if @driver.owner_operator? %>
         </div>
         <% if current_company_user %>
         <div class="tab-pane fade" id="newexpense"> 

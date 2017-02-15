@@ -39,12 +39,12 @@
     <% hrc_debit_running_total = 0.00 %>
     <% hrc_credit_running_total = 0.00 %>
     <% hrc_debit_total = 0.00 %>
-    <% debit_running_total = 0.00 %>
-    <% credit_running_total = 0.00 %>
+    <% driver_debit_running_total = 0.00 %>
+    <% driver_credit_running_total = 0.00 %>
     <% expense_running_total = 0.00 %>
     <% hrc_load_running_total = 0.00 %>
     <% total_miles = 0 %>
-    <% driver_load_running_total = 0.00 %>
+    <% driver_pay_running_total = 0.00 %>
     <% booking_fee_running_total = 0.00 %>
     <% miles_to_dollars = 0.00  %>
     <% invoice_price_total = 0.00 %>
@@ -62,22 +62,21 @@
         <%= load.title %> 
         <% end %>
       </td>
-      <td><%= number_to_currency(load.driver_user.driver_rpm) %>/mile</td>
+      <td><%= number_to_currency(load.driver_cents_pm) %>/mile</td>
       <td><%= load.miles %> </td>
-      <% load_miles_to_dollars = (load.miles * load.driver_user.driver_rpm) %>
-      <% load_miles_to_dollars = (load.miles * load.driver_user.driver_rpm) %>
+      <% load_miles_to_dollars = (load.miles * load.driver_cents_pm) %>
       <td><%= number_to_currency(load_miles_to_dollars) %> </td>
       <td>
         <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
         <%= number_to_currency(transaction.debit) %> 
-        <% debit_running_total = debit_running_total + transaction.debit %>
+        <% driver_debit_running_total = driver_debit_running_total + transaction.debit %>
         <% end %>
         <% end %>  
       </td>
       <td>
         <% load.transactions.each do |transaction| if transaction.expense_type == "Cash Advance" %>
         <%= number_to_currency(transaction.credit) %> 
-        <% credit_running_total = credit_running_total + transaction.credit %>
+        <% driver_credit_running_total = driver_credit_running_total + transaction.credit %>
         <% end %>
         <% end %>
       </td>
@@ -96,17 +95,18 @@
       <td><%= load.status_name %></td>
     </tr>
     <% invoice_price_total = invoice_price_total + load.invoice_price %>
-    <% driver_load_running_total = driver_load_running_total + load_miles_to_dollars %> 
+    <% driver_pay_running_total = driver_pay_running_total + load_miles_to_dollars %> 
     <% total_miles = total_miles + load.miles %>
     <% end %>
   </tbody>
 </table>
 <br>
-<% driver_net = driver_load_running_total - expense_running_total %>
-<% hrc_net = hrc_load_running_total - driver_load_running_total %>
-<% debit_total = debit_running_total - credit_running_total %>
+
+<% hrc_net = hrc_load_running_total - driver_pay_running_total %>
+<% driver_credit_debit_total = driver_debit_running_total - driver_credit_running_total %>
+<% driver_net = driver_pay_running_total - driver_credit_debit_total %>
 <% hrc_debit_total = hrc_debit_running_total - hrc_credit_running_total %>
-<% rate_after_expenses = driver_load_running_total - debit_total%>
+<% rate_after_expenses = driver_pay_running_total - driver_credit_debit_total %>
 <br /> 
 <table class="table table-bordered table-striped table-condensed table-responsive">
   <thead>
@@ -119,14 +119,14 @@
       <th>Net $</th>
     </tr>
   </thead>
-  <% net_after_otr_expense = driver_load_running_total - debit_total %>
+  <% net_after_otr_expense = driver_pay_running_total - driver_credit_debit_total %>
   <tbody>
     <tr>
       <td><%= total_miles %></td>
-      <td><%= number_to_currency(driver_load_running_total) %></td>
-      <td><%= number_to_currency(debit_running_total) %></td>
-      <td><%= number_to_currency(credit_running_total) %></td>
-      <td>- <%= number_to_currency(debit_total) %></td>
+      <td><%= number_to_currency(driver_pay_running_total) %></td>
+      <td><%= number_to_currency(driver_debit_running_total) %></td>
+      <td><%= number_to_currency(driver_credit_running_total) %></td>
+      <td>- <%= number_to_currency(driver_credit_debit_total) %></td>
       <td><%= number_to_currency(net_after_otr_expense) %></td>
     </tr>
   </tbody>
@@ -186,8 +186,8 @@
                     <th>Company Cash</th>
                   </tr>
                 </thead>
-                <% net_after_otr_expense = driver_load_running_total - debit_total %>
-                <% hrc_after_expense = (invoice_price_total - hrc_debit_total - driver_load_running_total) %>
+                <% net_after_otr_expense = driver_pay_running_total - driver_credit_debit_total %>
+                <% hrc_after_expense = (invoice_price_total - hrc_debit_total - driver_net) %>
                 <tbody>
                   <tr>
                     <td><%= number_to_currency(invoice_price_total) %></td>
@@ -196,7 +196,7 @@
                     <td><%= number_to_currency(hrc_debit_running_total) %></td>
                     <td><%= number_to_currency(hrc_credit_running_total) %></td>
                     <td>- <%= number_to_currency(hrc_debit_total) %></td>
-                    <td>- <%= number_to_currency(driver_load_running_total) %></td>
+                    <td>- <%= number_to_currency(driver_net) %></td>
                     <td><%= number_to_currency(hrc_after_expense / total_miles) %></td>
                     <td><strong><%= number_to_currency(hrc_after_expense) %></strong></td>
                   </tr>

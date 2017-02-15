@@ -26,16 +26,16 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :weight
       t.string :units
       t.string :load_size
-      t.integer :miles, default: 0.00  
-      t.decimal :invoice_price
-      t.decimal :booking_fee
+      t.integer :miles, default: 0  
+      t.decimal :invoice_price, default: 0.00 
+      t.decimal :booking_fee, default: 0.00 
       t.decimal :rate_told_to_driver 
       t.decimal :percent_deducted      
       t.decimal :total_company_expenses
-      t.decimal :rate_to_driver
-      t.decimal :rate_after_percent
+      t.decimal :rate_to_owner_operator
+      t.decimal :percent_coverted_to_dollars, default: 0.00  
       t.decimal :driver_cents_pm
-      t.decimal :rate_after_booking_fee 
+      t.decimal :rate_after_booking_fee, default: 0.00 
       t.decimal :agent_fee, default: 0.00 
       t.date :pick_up_date
       t.time :pick_up_time

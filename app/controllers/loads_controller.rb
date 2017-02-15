@@ -30,6 +30,7 @@ class LoadsController < ApplicationController
     @vendor_profile = VendorProfile.all
     @load_doc = @load.load_documents 
     @driver = @load.driver_user 
+    @owner_operator_transactions = @load.transactions
     @cd_transactions = @load.transactions.where(["expense_type = ?", "Cash Advance"])
     @load_origin_addresses = @load.load_origin_addresses.order('created_at ASC')
 
@@ -187,7 +188,6 @@ class LoadsController < ApplicationController
                                     :weight, 
                                     :units, 
                                     :load_size, 
-                                    :rate, 
                                     :percent_deducted,      
                                     :miles,
                                     :pick_up_date,
@@ -228,15 +228,15 @@ class LoadsController < ApplicationController
                                     :booking_fee,
                                     :invoice_price,
                                     :driver_statement_id,
-                                    :rate_to_driver,
-                                    :rate_after_percent,
-                                    :rate_after_booking_fee,
-                                    :rate_to_driver_after_factor_fees, 
+                                    :rate_to_owner_operator,
+                                    :rate_to_driver_after_fees, 
                                     :agent_fee, 
+                                    :percent_coverted_to_dollars,   
                                     :load_by_company_driver,
-                                    :load_by_owner_not_paid_by_mile,
+                                    :load_by_owner_not_paid_by_mile,   
                                     :load_by_owner_paid_by_mile,
                                     :driver_cents_pm, 
+                                    
                                     load_origin_addresses_attributes: 
                                       [
                                       :street,

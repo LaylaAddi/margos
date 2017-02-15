@@ -2,14 +2,29 @@
 $(document).ready(function() {
     $('select[id="select-driver"]').change(function() {
         var str = $('select[id="select-driver"] option:selected').text();
-        if (str.indexOf("company") >= 0) { 
-            $('#onlyCompany').fadeOut( "slow" );
+        if (str.indexOf("Company") >= 0) { 
+            $('#hideCents').fadeIn( "slow" );
         } else {
-            $('#onlyCompany').fadeIn( "slow" ); 
+            $('#hideCents').fadeOut( "slow" );  
         }
     });
 });
 </script>
+
+<script>
+$(document).ready(function() {
+    $('select[id="select-driver"]').change(function() {
+        var str = $('select[id="select-driver"] option:selected').text();
+        if (str.indexOf("Owner") >= 0) { 
+            $('#showToOwnerOperators').fadeIn( "slow" );
+        } else {
+            $('#showToOwnerOperators').fadeOut( "slow" );  
+        }
+    });
+});
+</script>
+
+
 
 <script>
 $(document).ready(function(){
@@ -19,12 +34,7 @@ $(document).ready(function(){
 });
 </script>
 
-// <script>
-// $(document).ready(function(){     
-//   var dropValue = $("#select-driver option:selected").text();
-//     $('#load_commodity').val(dropValue);                 
-// }); 
-// </script>
+
 
 
     
@@ -34,9 +44,35 @@ $(document).ready(function(){
     $("#select-driver").change(function() {  
       $('#load_driver_user_id').val(this.value); 
       var dropValue = $("#load_driver_user_id option:selected").text();
-      $('#load_commodity').val(dropValue);  
       $('#load_driver_cents_pm').val(dropValue); 
     });
   });
+});
+</script>
+id="load_rate_after_percent"
+<script>
+$(document).ready(function(){ 
+  $("#load_invoice_price, #load_booking_fee, #load_agent_fee, #load_percent_coverted_to_dollars").keyup(function () {
+      $("#load_percent_deducted").change(function () {
+    var loadInvoicePrice = parseFloat($("#load_invoice_price").val());    
+    var loadBookingFee = parseFloat($("#load_booking_fee").val());   
+    var loadAgentFee = parseFloat($("#load_agent_fee").val());   
+    var loadRateAfterPercent = parseFloat($("#load_percent_coverted_to_dollars").val());   
+    var total = parseFloat(loadInvoicePrice - loadBookingFee - loadAgentFee - loadRateAfterPercent);
+
+      $("#load_rate_to_owner_operator").val(total); 
+      }).keyup();
+    });
+  });
+</script>
+
+<script>
+  $( window ).load(function() {
+    $("#load_percent_deducted").change(function() {
+      var percentDeducted = $("#load_percent_deducted").val(); 
+            var invoicePrice = parseFloat($("#load_invoice_price").val()); 
+    $("#load_percent_coverted_to_dollars").val(invoicePrice * percentDeducted);
+
+    });
 });
 </script>

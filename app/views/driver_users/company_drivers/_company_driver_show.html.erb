@@ -10,14 +10,21 @@
           <div class="text-center">
             <%= image_tag("noUserPhoto.jpg", class: "img-rounded img-responsive img-circle") %> 
             <h2><%= @driver.full_name %> 
-            <br />
-            <small>Owner Operator</small></h2> 
+              <br />
+              <small>
+                (<%= @driver.type_of_user %>) 
+                <span class="text-red">
+                rate <%= number_to_currency(@driver.driver_rpm) if current_company_user %>/mile
+                 
+                </span>
+              </small>
+            </h2>
           </div>
           <div class="action-buttons">
             <div class="row">
               <div class="col-xs-6">
                 <%= link_to "Update Driver", edit_user_path(@driver), 
-                class: "btn btn-success btn-sm round" if current_company_user %>
+                class: "btn btn-success btn-sm round" if current_company_user %> 
               </div>
               <div class="col-xs-6">
               </div>
@@ -106,8 +113,8 @@
       <div class="col-md-8">
         <div class="profile-info-right">
           <ul class="nav nav-pills nav-pills-custom-minimal custom-minimal-bottom">
-            <li class="active"><a href="#activeLoads" data-toggle="tab">Check In</a></li>
-            <li><a href="#activeLoads" data-toggle="tab">Active Loads</a></li>
+            <li class="active"><a href="#checkins" data-toggle="tab">Check Ins</a></li>
+           <li><a href="#activeLoads" data-toggle="tab">Active Loads</a></li>
             <li><a href="#CompletedLoads" data-toggle="tab">Completed Loads</a></li>
             <li><a href="#DriverStatement" data-toggle="tab">Statements</a></li>
             <% if !current_driver_user %>
@@ -116,20 +123,20 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="checkins">
-   
-            </div>
-            <div class="tab-pane fade" id="activeLoads">
-              <%= render "active_loads" %> 
-            </div>
+              <%= render "checkins" %> 
+            </div> 
+            <div class="tab-pane fade" id="activeLoads"> 
+              <%= render "driver_users/company_drivers/company_driver_active_loads" %>
+            </div> 
             <div class="tab-pane fade" id="CompletedLoads">
-              <%= render "completed_loads" %>
+              <%= render "driver_users/company_drivers/company_driver_completed_loads" %>
             </div>
             <div class="tab-pane fade" id="DriverStatement">
               <%= render "driver_statements" %>  
             </div>
             <% if !current_driver_user %>
             <div class="tab-pane fade" id="Text">
-               <%= render "text" %>
+              <%= render "text" %> 
             </div>
             <% end %>
           </div>

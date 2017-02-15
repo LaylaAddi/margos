@@ -15,7 +15,6 @@
     <% total_debits = 0.00 %>
     <% cd_total_credits = 0.00 %>
     <% cd_total_debits = 0.00 %>
-    <% cd_total_credits = 0.00 %>
     <% cd_total_debits = 0.00 %>
     <% all_transactions = 0.00 %> 
     <% cd_all_transactions = 0.00 %>
@@ -73,7 +72,7 @@
         <%= number_to_currency(@load.booking_fee) %>
       </td>
       <td>
-        <%= number_to_currency(@load.rate_to_driver) %>
+        <%= number_to_currency(@load.driver_cents_pm)  %>/mile
       </td>
       <td>
         <%= number_to_percentage(@load.percent_deducted * 100) %>
@@ -132,43 +131,27 @@ Driver Section
         Paid Miles
       </th>
       <th>
-        <% if @driver.owner_operator?  %>
-        Rate Per Mile
-        <% end %>
-        <% if @driver.company_driver?  %>
         Load Pay
-        <% end %>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <% if @driver.company_driver?  %>
         <%= number_to_currency(@load.driver_cents_pm)  %>/mile
-        <% end %>
-        <% if @driver.owner_operator?  %>
-        <%= number_to_currency(@load.rate_to_driver_after_factor_fees)  %>
-        <% end %>
       </td>
       <td>
         <%= @load.miles %>
       </td>
       <td>
-        <% if @driver.company_driver?  %>
         <%= number_to_currency(@load.driver_cents_pm * @load.miles) %>
-        <% end %>
-        <% if @driver.owner_operator?  %>
-        <%= number_to_currency(@load.rate_to_driver_after_factor_fees / @load.miles) %>
-        <% end %>
       </td>
     </tr>
   </tbody>
 </table>
-	<% cd_rate = @load.rate_after_booking_fee * @load.miles  %>
+	<% cd_rate = @load.driver_cents_pm * @load.miles  %>
 	<% cd_debit_credit_total = cd_total_debits - cd_total_credits %>
 	<% debit_credit_total = total_debits - total_credits %>
-	<% rate_after_expenses = (@load.rate_to_driver_after_factor_fees - debit_credit_total) %> 
 	<% cd_rate_after_expenses = cd_rate - cd_debit_credit_total %> 
 <table class="table table-bordered table-striped table-condensed table-responsive">
   <thead>
@@ -182,20 +165,11 @@ Driver Section
   </thead>
   <tbody>
     <tr>
-      <% if @driver.owner_operator? %>
-      <td>-<%= number_to_currency(total_debits) %></td>
-      <td>+<%= number_to_currency(total_credits) %></td>
-      <td>-<%= number_to_currency(debit_credit_total) %></td>
-      <td><%= number_to_currency(rate_after_expenses)  %></td>
-      <td><%= number_to_currency(rate_after_expenses / @load.miles) %></td>
-      <% end %>
-      <% if @driver.company_driver? %>
       <td>-<%= number_to_currency(cd_total_debits) %></td>
       <td>+<%= number_to_currency(cd_total_credits) %></td>
       <td>-<%= number_to_currency(cd_debit_credit_total) %></td>
       <td><%= number_to_currency(cd_rate_after_expenses)  %></td>
       <td><%= number_to_currency(cd_rate_after_expenses / @load.miles) %></td>
-      <% end %>
     </tr>
   </tbody>
 </table>

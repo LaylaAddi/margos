@@ -1,10 +1,10 @@
 class MessagesController < ApplicationController
   include ApplicationHelper
  skip_before_filter :verify_authenticity_token
-  before_action :authenticate_hrc_user! 
+  before_action :authenticate_company_user! 
  
   def index
-    @hrc_user = current_hrc_user
+    @company_user = current_company_user
     @driver = DriverUser.find(params[:cellphone])
     @messages = Message.for_number(params[:id])
     @new_message = Message.new(number: params[:id])
@@ -14,14 +14,14 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @hrc_user = current_hrc_user
+    @company_user = current_company_user
     @messages = Message.for_number(params[:id])
     @new_message = Message.new(number: params[:id])
     @inbound = @messages.find_by(inbound: 'true') 
   end
 
   def create
-    @hrc_user = current_hrc_user
+    @company_user = current_company_user
 
     message = Message.new(clean_params)
     message.inbound = false
