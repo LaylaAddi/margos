@@ -113,6 +113,7 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :zip 
       t.float :latitude
       t.float :longitude
+      t.string :notes
       t.integer :transactionable_id
       t.string  :transactionable_type
       t.string :business_name

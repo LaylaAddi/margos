@@ -1,6 +1,6 @@
 class LoadOriginAddressesController < AddressesController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy]    
   
   def index
     @addresses = Address.all

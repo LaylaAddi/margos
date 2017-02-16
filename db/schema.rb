@@ -468,6 +468,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "zip"
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "notes"
     t.integer  "transactionable_id"
     t.string   "transactionable_type"
     t.string   "business_name"

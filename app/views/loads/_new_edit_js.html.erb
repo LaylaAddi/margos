@@ -49,19 +49,18 @@ $(document).ready(function(){
   });
 });
 </script>
-id="load_rate_after_percent"
+
 <script>
 $(document).ready(function(){ 
-  $("#load_invoice_price, #load_booking_fee, #load_agent_fee, #load_percent_coverted_to_dollars").keyup(function () {
+  $("#load_invoice_price, #load_booking_fee, #load_percent_coverted_to_dollars").change(function () {
       $("#load_percent_deducted").change(function () {
     var loadInvoicePrice = parseFloat($("#load_invoice_price").val());    
     var loadBookingFee = parseFloat($("#load_booking_fee").val());   
-    var loadAgentFee = parseFloat($("#load_agent_fee").val());   
     var loadRateAfterPercent = parseFloat($("#load_percent_coverted_to_dollars").val());   
-    var total = parseFloat(loadInvoicePrice - loadBookingFee - loadAgentFee - loadRateAfterPercent);
+    var total = parseFloat(loadInvoicePrice - loadBookingFee - loadRateAfterPercent);
 
       $("#load_rate_to_owner_operator").val(total); 
-      }).keyup();
+      }).change();
     });
   });
 </script>

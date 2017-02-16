@@ -14,9 +14,8 @@
   <tbody>
     <% total_credits = 0.00 %>
     <% total_debits = 0.00 %>
-    <% owner_operatortotal_credits = 0.00 %>
-    <% owner_operatortotal_debits = 0.00 %>
-    <% owner_operatortotal_debits = 0.00 %>
+    <% owner_operator_total_credits = 0.00 %>
+    <% owner_operator_total_debits = 0.00 %>
     <% all_transactions = 0.00 %> 
     <% owner_operatorall_transactions = 0.00 %>
     <% running_total = 0.00 %>
@@ -44,8 +43,8 @@
 <% @owner_operator_transactions.each do |owner_operator_transaction| %>
 <% number_to_currency(owner_operator_transaction.credit) %>
 <% number_to_currency(owner_operator_transaction.debit) %>
-<% owner_operatortotal_credits = owner_operatortotal_credits + owner_operator_transaction.credit %>
-<% owner_operatortotal_debits = owner_operatortotal_debits + owner_operator_transaction.debit %> 
+<% owner_operator_total_credits = owner_operator_total_credits + owner_operator_transaction.credit %>
+<% owner_operator_total_debits = owner_operator_total_debits + owner_operator_transaction.debit %> 
 <% end %>
 <table class="table table-bordered table-striped table-condensed table-responsive">
   <thead>
@@ -87,9 +86,7 @@
       <th>
         $ From %
       </th>
-      <th>
-        $ To HRC
-      </th>
+
       <th>
         Miles
       </th>
@@ -105,9 +102,6 @@
     <tr>
       <td>
         <%= number_to_currency(@load.percent_coverted_to_dollars)  %> 
-      </td>
-      <td>
-empty td
       </td>
       <td>
         <%= (@load.miles) %>
@@ -150,11 +144,11 @@ Driver Section
     </tr>
   </tbody>
 </table>
-	<% owner_operatorrate = @load.rate_after_booking_fee * @load.miles  %>
-	<% owner_operatordebit_credit_total = owner_operatortotal_debits - owner_operatortotal_credits %>
+
+	<% owner_operator_debit_credit_total = owner_operator_total_debits - owner_operator_total_credits %>
 	<% debit_credit_total = total_debits - total_credits %>
-	<% rate_after_expenses = %>
-	<% owner_operatorrate_after_expenses = owner_operatorrate - owner_operatordebit_credit_total %> 
+	<% rate_after_expenses = @load.rate_to_owner_operator - owner_operator_debit_credit_total %>
+	<% rate_per_mile_after_expenses = rate_after_expenses / @load.miles %>
 <table class="table table-bordered table-striped table-condensed table-responsive">
   <thead>
     <tr>
@@ -167,20 +161,11 @@ Driver Section
   </thead>
   <tbody>
     <tr>
-      <% if @driver.owner_operator? %>
-      <td>-<%= number_to_currency(total_debits) %></td>
-      <td>+<%= number_to_currency(total_credits) %></td>
-      <td>-<%= number_to_currency(debit_credit_total) %></td>
+      <td>-<%= number_to_currency(owner_operator_total_debits) %></td>
+      <td>+<%= number_to_currency(owner_operator_total_credits) %></td>
+      <td>-<%= number_to_currency(owner_operator_debit_credit_total) %></td>
       <td><%= number_to_currency(rate_after_expenses)  %></td>
-      <td><%= number_to_currency(rate_after_expenses / @load.miles) %></td>
-      <% end %>
-      <% if @driver.company_driver? %>
-      <td>-<%= number_to_currency(owner_operatortotal_debits) %></td>
-      <td>+<%= number_to_currency(owner_operatortotal_credits) %></td>
-      <td>-<%= number_to_currency(owner_operatordebit_credit_total) %></td>
-      <td><%= number_to_currency(owner_operatorrate_after_expenses)  %></td>
-      <td><%= number_to_currency(owner_operatorrate_after_expenses / @load.miles) %></td>
-      <% end %>
+      <td><%= number_to_currency(rate_per_mile_after_expenses) %></td> 
     </tr>
   </tbody>
 </table>

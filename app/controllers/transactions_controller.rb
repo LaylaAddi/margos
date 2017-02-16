@@ -94,7 +94,8 @@ class TransactionsController < ApplicationController
                                             :transactionable_id,
                                             :transactionable_type,
                                             :latitude,
-                                            :longitude
+                                            :longitude,
+                                            
                                             )
     end
 end

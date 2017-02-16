@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true
   before_action :driver_list, :app_variable
    
-  around_filter :user_time_zone, if: :current_user
+  around_action :user_time_zone, if: :current_user
   
   def app_variable
     @app_variable = AppVariable.first

@@ -8,6 +8,7 @@ class LoadsController < ApplicationController
     @all_loads = Load.all
   	@search_loads = @all_loads.search(params[:q])
   	@loads = @search_loads.result.order(:id).page(params[:page]).per(1000)
+
     # @destination = @load.load_origin_addresses.where(["pick_up_delivery = ?", "Delivery(Last Destination)"]).last
   	
     respond_to do |format|
