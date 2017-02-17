@@ -4,16 +4,14 @@ class Load < ApplicationRecord
   belongs_to :company_user 
   belongs_to :driver_user 
   belongs_to :company_profile 
- 
+  has_many :percentages 
   has_many :transactions, as: :transactionable
   accepts_nested_attributes_for :transactions 
   belongs_to :driver_statement, optional: true 
   has_many :load_documents, dependent: :destroy  
 
-  has_many :load_origin_addresses, inverse_of: :load, dependent: :destroy 
-  has_many :load_destination_addresses, inverse_of: :load, dependent: :destroy  
+  has_many :load_origin_addresses, dependent: :destroy 
   accepts_nested_attributes_for :load_origin_addresses
-  accepts_nested_attributes_for :load_destination_addresses 
   before_validation :set_company_driver_rate, :set_company_driver_percent 
   # before_save :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
   # before_update :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate

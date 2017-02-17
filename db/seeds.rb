@@ -1,7 +1,12 @@
-fast_food = AddressCategory.where(name: "Pick Up").first_or_create(name: "Pick Up")
+pickup = AddressCategory.where(name: "Pick Up").first_or_create(name: "Pick Up")
 seafood = AddressCategory.where(name: "Delivery").first_or_create(name: "Delivery")
-steak = AddressCategory.where(name: "P and D").first_or_create(name: "P and D")
+steak = AddressCategory.where(name: "Pick Up and Delivery").first_or_create(name: "Pick Up and Delivery")
 chinese = AddressCategory.where(name: "Final Destination").first_or_create(name: "Final Destination")
+
+
+Percentage.where(percentage: "5").first_or_create(percentage: "5")
+Percentage.where(percentage: "10").first_or_create(percentage: "10")
+Percentage.where(percentage: "15").first_or_create(percentage: "15")
 
    States =  
   [
@@ -157,7 +162,7 @@ kathy = CompanyUser.create(
   emergency_contact: Faker::Name.first_name,
   emergency_contact_number: Faker::PhoneNumber.phone_number,
   dispatcher: "true",
-  admin: "true",
+  admin: "false",
   employment_status: "active"
   )
   puts kathy.inspect
@@ -497,7 +502,7 @@ DriverCheckin.create(driver_user_id: 3,latitude: 30.332184,longitude: -81.655647
 
 
 AppVariable.create(
-app_name: "Acme App Name",
+app_name: "Acme App Inc.",
 app_logo: "",
 app_logo_text: "Logo Name",
 app_tab_text: "Tab Name",

@@ -1,11 +1,13 @@
 
-<% if current_company_user %> 
+<% if current_company_user.try(:admin) == true %> 
 <li> 
-  <%= link_to app_variables_path do %>
+  <%= link_to rails_admin_path do %>
     <span class="fa fa-user-plus"></span> 
       App Admin 
-  <% end %>
+<% end %>
+<% end %>
 </li>
+<% if current_company_user %> 
 <li> 
   <%= link_to root_path do %>
     <span class="fa fa-dashboard"></span> 

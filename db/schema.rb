@@ -423,6 +423,14 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.index ["truck_id"], name: "index_miles_on_truck_id", using: :btree
   end
 
+  create_table "percentages", force: :cascade do |t|
+    t.string   "percentage"
+    t.integer  "load_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["load_id"], name: "index_percentages_on_load_id", using: :btree
+  end
+
   create_table "trailer_images", force: :cascade do |t|
     t.string   "notes"
     t.string   "image_file"

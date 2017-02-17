@@ -1,63 +1,87 @@
 <%= render "loads/partials/statuses" %>
 <div class="row">
   <div class="col-sm-6">
-    <p> 
-    <h4>Pick Up</h4>
-    <address>
-      <strong><%= @load.shipper_company_name %></strong><br>
-      <%= @load.origin_street %><br>
-      <%= @load.origin_city  %> <%= @load.origin_state  %> <%= @load.origin_zip  %><br>
-      <small>Phone: </small><%= @load.origin_phone  %><br />
-      <small>Contact: </small><%= @load.origin_contact  %>
-    </address>
-    <h4>Pick Up Details</h4>
-    <%= (@load.pick_up_date.strftime("%A %B %-d, %Y")) %><br> 
-    <% if @load.pick_up_notes.present? %>
-    <span class="text-red"><%= @load.pick_up_notes %></span>
-    <% else %>
-    No notes were entered.
-    <% end %> 
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h4>Load Origin</h4>
+      </div>
+      <div class="panel-body">
+        <address>
+          <strong><%= @load.shipper_company_name %></strong><br>
+          <%= @load.origin_street %><br>
+          <%= @load.origin_city  %> <%= @load.origin_state  %> <%= @load.origin_zip  %><br>
+          <small>Phone: </small><%= @load.origin_phone  %><br />
+          <small>Contact: </small><%= @load.origin_contact  %>
+        </address>
+      </div>
+      <div class="panel-footer">
+        <h4>Pick Up Details</h4>
+        <%= (@load.pick_up_date.strftime("%A %B %-d, %Y")) %><br> 
+        <% if @load.pick_up_notes.present? %>
+        <span class="text-red"><%= @load.pick_up_notes %></span>
+        <% else %>
+        No notes were entered.
+        <% end %> 
+      </div>
+    </div>
   </div>
-  <% if @destination.present? %>
-  <p>
-  <h4>Final Destination</h4>
-  <address>
-    <strong><%= @destination.company %></strong><br>
-    <%= @destination.street %><br>
-    <%= @destination.city  %> <%= @destination.state  %> <%= @destination.zip  %><br>
-    <small>Phone: </small><%= @destination.phone  %><br />
-    <small>Contact: </small><%= @destination.contact  %>
-  </address>
-  <h4>Delivery Details</h4>
-  <%= @destination.pick_up_date.strftime("%A %B %-d, %Y") %> 
-  <br>
-  <% if @destination.notes.present? %>
-  <span class="text-red"><%= @destination.notes %></span>
-  <% else %>
-  No notes were entered.
-  <% end %>
-  <% else %>
+  <% if @destination.present? %>               
   <div class="col-sm-6">
-    <h4>Delivery</h4>
-    <address>
-      <strong><%= @load.receiver_company_name %></strong><br>
-      <%= @load.destination_street %><br>
-      <%= @load.destination_city  %> <%= @load.destination_state  %> <%= @load.destination_zip  %><br>
-      <small>Phone: </small><%= @load.destination_phone %><br />
-      <small>Contact: </small><%= @load.destination_contact %>
-    </address>
-    <h4>Delivery Details</h4>
-    <%= @load.delivery_date.strftime("%A %B %-d, %Y") %> 
-    <br>
-    <% if @load.delivery_notes.present? %>
-    <span class="text-red"><%= @load.delivery_notes %></span>
-    <% else %>
-    No notes were entered.
-    <% end %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h4>Load Final Destination</h4>
+      </div>
+      <div class="panel-body">
+        <address>
+          <strong><%= @destination.company %></strong><br>
+          <%= @destination.street %><br>
+          <%= @destination.city  %> <%= @destination.state  %> <%= @destination.zip  %><br>
+          <small>Phone: </small><%= @destination.phone  %><br />
+          <small>Contact: </small><%= @destination.contact  %>
+        </address>
+      </div>
+      <div class="panel-footer">
+        <h4>Delivery Details</h4>
+        <%= @destination.pick_up_date.strftime("%A %B %-d, %Y") %> 
+        <br>
+        <% if @destination.notes.present? %>
+        <span class="text-red"><%= @destination.notes %></span>
+        <% else %>
+        No notes were entered.
+        <% end %>
+      </div>
+    </div>
   </div>
-  <% end %>  
-</div>
-<% link_to "Add Pickup Address", new_load_load_origin_address_path(@load, @address), 
-  class: "btn btn-success round btn-xs" %>
+  <% else %>               
+  <div class="col-sm-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h4>Load Final Destination</h4>
+      </div>
+      <div class="panel-body">
+        <address>
+          <strong><%= @load.receiver_company_name %></strong><br>
+          <%= @load.destination_street %><br>
+          <%= @load.destination_city  %> <%= @load.destination_state  %> <%= @load.destination_zip  %><br>
+          <small>Phone: </small><%= @load.destination_phone %><br />
+          <small>Contact: </small><%= @load.destination_contact %>
+        </address>
+      </div>
+      <div class="panel-footer">
+        <h4>Delivery Details</h4>
+        <%= @load.delivery_date.strftime("%A %B %-d, %Y") %> 
+        <br>
+        <% if @load.delivery_notes.present? %>
+        <span class="text-red"><%= @load.delivery_notes %></span>
+        <% else %>
+        No notes were entered.
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <% link_to "Add Pickup Address", new_load_load_origin_address_path(@load, @address), 
+    class: "btn btn-success round btn-xs" %>
   <hr>
-<%= render "loads/partials/lefttabs/address" %>
+  <%= render "loads/partials/lefttabs/address" %>
+</div>

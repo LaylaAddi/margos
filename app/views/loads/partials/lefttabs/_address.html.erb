@@ -1,29 +1,33 @@
 <% @load_origin_addresses.each do |origin| %> 
-<% unless origin == @load_origin_addresses.where(address_category_id: 4) %>
+<% unless origin.address_category_id == 4 %>
 <div class="col-sm-6">
-  <div class="panel panel-info">
+  <div class="panel panel-default shadow">
     <div class="panel-heading">
       <h4>
         <% if origin.address_category_id == 1 %>
         <span class="label label-success round">
         Pick Up
-        </span>
+        </span><br />
+         </h4>
+<p><%= local_time(origin.pick_up_date, format:  '%B %e, %Y') %></p>
+<h4>
         <% elsif origin.address_category_id == 2 %>
         <span class="label label-primary round">
         Delivery
-        </span>
-        <br /> 
-        <br /> 
+        </span><br />
+         </h4>
+<p><%= local_time(origin.pick_up_date, format:  '%B %e, %Y') %></p>
+<h4>
         <% elsif origin.address_category_id == 3 %>
-        <span class="label label-warning round">
+        <span class="label label-warning round"> 
         Pick Up & Delivery
-        </span>    
+        </span>  <br />
       </h4>
+<p><%= local_time(origin.pick_up_date, format:  '%B %e, %Y') %></p>
       <% end %>
-      <%= local_time(origin.pick_up_date, format:  '%B %e, %Y') %>
+      
     </div>
     <div class="panel-body">
-      <p>
       <address>
         <strong><%= origin.company %></strong><br>
         <%= origin.street %><br>
@@ -35,7 +39,6 @@
       <strong>Notes</strong>
       <%= origin.notes %>  
       <% end %>
-      </p>
       <div class="btn-group pull-right activity-actions">
         <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-th"></i>

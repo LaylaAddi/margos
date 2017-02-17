@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
 
-  resources :app_variables
-  mount ActionCable.server => '/cable'
+
 
 
 
@@ -78,7 +77,9 @@ Rails.application.routes.draw do
   resources :driver_statements, only: [:index] do
     collection {post :import}
   end   
+  resources :app_variables
   
+
 
   get 'company_dashboard', to: 'company_users#company_dashboard'
   get 'driver_dashboard', to: 'driver_users#driver_dashboard'
@@ -90,5 +91,7 @@ Rails.application.routes.draw do
   
   get 'creatives/carrier_package', to: 'creatives#download_carrier'
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
+  mount ActionCable.server => '/cable'
 end

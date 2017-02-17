@@ -45,6 +45,7 @@
 <% number_to_currency(cd_transaction.debit) %>
 <% cd_total_credits = cd_total_credits + cd_transaction.credit %>
 <% cd_total_debits = cd_total_debits + cd_transaction.debit %> 
+
 <% end %>
 <table class="table table-bordered table-striped table-condensed table-responsive">
   <thead>
@@ -53,14 +54,21 @@
         Invoice Price
       </th>
       <th>
+        Miles
+      </th>
+      <th>
+        Gross RPM
+      </th>
+      <th>
         Booking Fee
       </th>
       <th>
         Rate To Driver
       </th>
       <th>
-        % to HRC
+        Driver Pay
       </th>
+
     </tr>
   </thead>
   <tbody>
@@ -69,53 +77,66 @@
         <%= number_to_currency(@load.invoice_price) %>
       </td>
       <td>
+        <%= (@load.miles) %>
+      </td>
+     <td>
+        <%= number_to_currency(@load.invoice_price / @load.miles) %>
+      </td>
+      <td>
         <%= number_to_currency(@load.booking_fee) %>
       </td>
       <td>
         <%= number_to_currency(@load.driver_cents_pm)  %>/mile
       </td>
       <td>
-        <%= number_to_percentage(@load.percent_deducted * 100) %>
+        <%= number_to_currency(@load.driver_cents_pm * @load.miles)  %>
       </td>
     </tr>
   </tbody>
 </table>
+
+<% driver_pay = (@load.driver_cents_pm * @load.miles) %>
+<% rate_after_driver_pay = (@load.invoice_price - driver_pay) %>
+<% load_expense = (total_debits - total_credits) %>
+<% total_otr_expense = driver_pay + load_expense %>
+<% cash_after_expenses = (@load.invoice_price - total_otr_expense) %>
 <table class="table table-bordered table-striped table-condensed table-responsive">
   <thead>
     <tr>
       <th>
-        $ From %
+        Rate After Driver Pay
       </th>
       <th>
-        $ To HRC
+        OTR Expenses
       </th>
       <th>
-        Miles
+        Total Expenses
       </th>
       <th>
-        Gross RPM
+       Cash After Expenses
       </th>
       <th>
-        HRC RPM
+        Profit / Mile
       </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>
-        <%= number_to_currency(@load.ddbop)  %>
+        <!--Rate After Driver Pay-->
+        <%= number_to_currency(rate_after_driver_pay)  %>
       </td>
       <td>
-        <%= number_to_currency(@load.booking_fee_plus_percent_in_dollars)  %>
+        <%= number_to_currency(load_expense) %>
       </td>
       <td>
-        <%= (@load.miles) %>
+        <%= number_to_currency(total_otr_expense) %>
       </td>
       <td>
-        <%= number_to_currency(@load.grpm) %>
+        <%= number_to_currency(cash_after_expenses) %>
       </td>
       <td>
-        <%= number_to_currency(@load.company_rpm) %>
+         <%= number_to_currency(cash_after_expenses / @load.miles) %>
       </td>
     </tr>
   </tbody>

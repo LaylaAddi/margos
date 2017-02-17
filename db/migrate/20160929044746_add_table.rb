@@ -396,7 +396,7 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :state_2
       t.string :zip_2
       t.text :app_terms
-      t.text :app_conditions
+      t.text :app_conditions 
       t.string :theme, default: "Flatly"
       t.string :app_company_name, default: "Margo's Cargo"
       t.string :string_1
@@ -483,6 +483,12 @@ class AddTable < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    create_table :percentages do |t|
+      t.string :percentage
+      t.integer :load_id, index: true
 
+
+      t.timestamps
+    end
   end
 end

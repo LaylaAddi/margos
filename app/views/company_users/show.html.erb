@@ -28,8 +28,6 @@
           <div class="section">
             <h3>Load Statistics</h3>
             <p>
-             
-
               <span class="badge">
                 <%= @active_loads.count %>
               </span> Active Loads 
@@ -91,7 +89,7 @@
             <li><a href="#Chat" data-toggle="tab">Chat</a></li> 
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="activeLoads">
+            <div class="tab-pane fade in active" id="activeLoads">
             <%= render "active_loads" %> 
             </div>
             <div class="tab-pane fade" id="CompletedLoads">
