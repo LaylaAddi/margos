@@ -29,7 +29,6 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.integer :miles, default: 0  
       t.decimal :invoice_price, default: 0.00 
       t.decimal :booking_fee, default: 0.00 
-      t.decimal :rate_told_to_driver 
       t.decimal :percent_deducted      
       t.decimal :total_company_expenses
       t.decimal :rate_to_owner_operator
@@ -71,7 +70,8 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :shipper_company_name 
       t.string :receiver_company_name
       t.integer :driver_statement_id, index: true
-      t.decimal :rate_to_driver_after_factor_fees
+      t.integer :percentage_id
+
 
       t.timestamps
     end
@@ -484,8 +484,8 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     create_table :percentages do |t|
-      t.string :percentage
-      t.integer :load_id, index: true
+      t.string :amount  
+
 
 
       t.timestamps

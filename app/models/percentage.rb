@@ -1,3 +1,3 @@
 class Percentage < ApplicationRecord
-  belongs_to :load
-end 
+  has_many :loads
+end  

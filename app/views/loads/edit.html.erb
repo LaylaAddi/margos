@@ -53,8 +53,8 @@
             <div>
               <label>Percentage to Comapny</label> 
               <br>
-              <%= f.select :percent_deducted, Load::PercentageSelect %> 
-              <%= f.text_field :percent_coverted_to_dollars, class: 'bsInputSize center', readonly: true  %> 
+              <%= f.collection_select :percentage_id, Percentage.all, :id, :amount %>
+              <%= f.text_field :percent_coverted_to_dollars, class: 'bsInputSize center', readonly: false  %> 
             </div>
             <div>
               <%= f.text_field :rate_to_owner_operator, class: 'bsInputSize center'  %>
@@ -182,4 +182,4 @@
 </div>
 <%= render "edit_map" unless @load.has_multiple_pd? %>
 
-<%= render "edit_load_js" %><!--JS for showing and removing inputs-->
+<%= render "edit_js" %><!--JS for showing and removing inputs-->

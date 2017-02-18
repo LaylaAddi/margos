@@ -4,7 +4,7 @@ class Load < ApplicationRecord
   belongs_to :company_user 
   belongs_to :driver_user 
   belongs_to :company_profile 
-  has_many :percentages 
+  belongs_to :percentage
   has_many :transactions, as: :transactionable
   accepts_nested_attributes_for :transactions 
   belongs_to :driver_statement, optional: true 
@@ -12,7 +12,7 @@ class Load < ApplicationRecord
 
   has_many :load_origin_addresses, dependent: :destroy 
   accepts_nested_attributes_for :load_origin_addresses
-  before_validation :set_company_driver_rate, :set_company_driver_percent 
+  before_validation :set_company_driver_rate
   # before_save :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
   # before_update :set_booking_fee, :set_rate_to_driver_after_factor_fees, :company_driver_rate
 
@@ -25,14 +25,14 @@ class Load < ApplicationRecord
   
  
   
-  validates_presence_of  :load_size, :percent_deducted, :pick_up_date,
-  :equipment_type, :status_name, :driver_user_id, :company_profile, :percent_deducted,
+  validates_presence_of  :load_size, :pick_up_date,
+  :equipment_type, :status_name, :driver_user_id, :company_profile,
   :rate_to_owner_operator, :invoice_price, :origin_street, :origin_city, :origin_state
 
   validates :destination_street, :destination_city, :miles, :destination_state, :delivery_date,
   presence: true, unless: :has_multiple_pd?
   validates :percent_coverted_to_dollars, presence: true, unless: :is_company_driver
-
+  validates :percent_coverted_to_dollars, numericality: { other_than: 0.00 }
   ransack_alias :load_search_params,
   :driver_user_first_name_or_driver_user_last_name_or_origin_city_or_destination_city_or_origin_state_or_destination_state_or_company_profile_company_name_or_broker_shipper_load_id
  
@@ -46,33 +46,17 @@ class Load < ApplicationRecord
     self.rate_to_owner_operator = 0.00 if is_company_driver
   end
   
-  def set_company_driver_percent
-    self.percent_deducted = 0.00 if is_company_driver
-  end
 
 
 
 
-  def grpm
-    self.invoice_price / self.miles 
-  end
+
   
  
-  def ddbop #dollars deducted based on percent
-  self.rate_to_owner_operator * self.percent_deducted
-  end
+
+
   
-  def booking_fee_plus_percent_in_dollars
-    self.booking_fee + ddbop
-  end
-  
-  def company_rpm
-    booking_fee_plus_percent_in_dollars / self.miles 
-  end
-  
-  def set_rate_to_driver_after_factor_fees
-  self.rate_to_driver_after_factor_fees = self.rate_to_company_driver - ddbop 
-  end
+
   
 
   def destination

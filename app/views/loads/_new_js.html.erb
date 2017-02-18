@@ -48,9 +48,20 @@ $(document).ready(function(){
 </script>
 
 <script>
+  $( window ).load(function() {
+    $("#load_percentage_id").change(function() {
+      var percentDeducted = $("#load_percentage_id option:selected").text();   
+            var invoicePrice = $("#load_invoice_price").val();   
+    $("#load_percent_coverted_to_dollars").val(percentDeducted * invoicePrice); 
+
+    });
+});
+</script>
+
+<script>
 $(document).ready(function(){ 
   $("#load_invoice_price, #load_booking_fee, #load_percent_coverted_to_dollars").change(function () {
-      $("#load_percent_deducted").change(function () {
+      $("#load_percentage_id").change(function () {
     var loadInvoicePrice = parseFloat($("#load_invoice_price").val());    
     var loadBookingFee = parseFloat($("#load_booking_fee").val());   
     var loadRateAfterPercent = parseFloat($("#load_percent_coverted_to_dollars").val());   
@@ -62,13 +73,3 @@ $(document).ready(function(){
   });
 </script>
 
-<script>
-  $( window ).load(function() {
-    $("#load_percent_deducted").change(function() {
-      var percentDeducted = $("#load_percent_deducted").val(); 
-            var invoicePrice = parseFloat($("#load_invoice_price").val()); 
-    $("#load_percent_coverted_to_dollars").val(invoicePrice * percentDeducted);
-
-    });
-});
-</script>

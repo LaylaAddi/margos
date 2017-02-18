@@ -25,7 +25,7 @@ class LoadsController < ApplicationController
     if @load.has_multiple_pd? && !@destination.present? 
       redirect_to new_load_load_origin_address_path(@load) and return
     end
-
+    @percentage = @load.percentage 
     @company_profile = @load.company_profile    
     @transactions = @load.transactions  
     @vendor_profile = VendorProfile.all
@@ -236,8 +236,8 @@ class LoadsController < ApplicationController
                                     :load_by_company_driver,
                                     :load_by_owner_not_paid_by_mile,   
                                     :load_by_owner_paid_by_mile,
-                                    :driver_cents_pm, 
-                                    
+                                    :driver_cents_pm,
+                                    :percentage_id,
                                     load_origin_addresses_attributes: 
                                       [
                                       :street,

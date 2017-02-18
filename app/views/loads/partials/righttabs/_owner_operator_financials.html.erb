@@ -75,7 +75,8 @@
         <%= number_to_currency(@load.rate_to_owner_operator) %> 
       </td>
       <td>
-        <%= number_to_percentage(@load.percent_deducted * 100) %>
+    <%= number_to_percentage(@load.percentage.amount, precision: 2) %> 
+
       </td>
     </tr>
   </tbody>
@@ -107,10 +108,10 @@
         <%= (@load.miles) %>
       </td>
       <td>
-        <%= number_to_currency(@load.grpm) %>
+        <%= number_to_currency(@load.invoice_price / @load.miles) %>
       </td>
       <td>
-        <%= number_to_currency(@load.company_rpm) %>
+        <%= number_to_currency(@load.percent_coverted_to_dollars / @load.miles)  %> 
       </td>
     </tr>
   </tbody>
