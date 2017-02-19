@@ -550,7 +550,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "employment_status",        default: "not_active"
     t.string   "time_zone"
     t.boolean  "app_agree_terms"
-    t.string   "driver_rate_id"
+    t.integer  "driver_rate_id",           default: 1
     t.decimal  "driver_rpm"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

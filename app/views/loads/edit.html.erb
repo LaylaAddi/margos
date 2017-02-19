@@ -67,7 +67,7 @@
           <div class="form-group input-group">
             <div class="hidden">
               <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
-                :id, :driver_rpm %> 
+              :id, :driver_rate_set_in_model %>   
             </div>
             <%= f.input :driver_cents_pm %>
           </div>

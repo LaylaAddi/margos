@@ -101,3 +101,12 @@
   </div>
 </div>
 <% end %> 
+
+<script>
+  $('#driver_user_company_driver, #driver_user_owner_operator, #driver_user_owner_operator_pbm').on('change', function() {
+    $('#driver_user_company_driver, #driver_user_owner_operator, #driver_user_owner_operator_pbm').not(this).prop('checked', false);  
+});
+</script>
+
+
+

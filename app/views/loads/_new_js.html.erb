@@ -73,3 +73,29 @@ $(document).ready(function(){
   });
 </script>
 
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function() {
+
+        if($('#load_miles').val() == 0 ){$('#theSubmitButton').hide();}  
+
+        $('#setVal').on('click' , function() {
+
+             if( this.text != 0){
+
+                   $('#theSubmitButton').show("slow");
+              }
+
+              else{
+                   $('#theSubmitButton').hide(); 
+             }
+        });
+      });
+    </script>

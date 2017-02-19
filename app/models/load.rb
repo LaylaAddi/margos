@@ -62,6 +62,7 @@ class Load < ApplicationRecord
   def destination
     load_origin_addresses.where(["address_category_id = ?", 4]).last 
   end
+  
   def destination_map
     load_origin_addresses('created_at desc').last  
   end

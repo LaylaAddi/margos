@@ -58,9 +58,9 @@
       <div id="hideCents">
         <div class="col-sm-2">
           <div class="form-group input-group"> 
-            <div class=""> 
-          <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
-            :driver_rate_id, :driver_rate, {include_blank: "Select Driver"} %>   
+            <div class="hidden">  
+              <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+              :id, :driver_rate_set_in_model, {include_blank: "Select Driver"} %>   
 
             </div>
             <%= f.input :driver_cents_pm %>
@@ -180,15 +180,19 @@
       <div id="idToHide">
         <div class="col-sm-3 col-sm-offset-0">
           <%= f.input :miles, label: false, placeholder: "Total Miles" %>
-        </div>
+            </div>
       </div>
     </div>
     <div class="form-actions pull-right">
-      <%= f.button :submit, class: "btn btn-success btn-xs round" %>
+      <div id="theSubmitButton">
+        <%= f.button :submit, class: "btn btn-success btn-xs round" %>
+      </div>
+      
       <% link_to 'All Loads', loads_path, class: "btn btn-info btn-xs round" %>
+ </div>
       <% end %>
       <div id="idToHide2"><%= render "calculate_distance" %></div>
-    </div>
+   
   </div>
   <div id="idToHide3"><%= render "new_map" %></div>
 </div>

@@ -26,6 +26,19 @@ $(document).ready(function() {
 });
 </script>
 
+<% if @load.driver_user.owner_operator == true %> 
+<script>
+$(document).ready(function(){ 
+  $(function() {     
+    $("#select-driver").ready(function() {  
+      $('#load_driver_user_id').val(this.value); 
+      var dropValue = $("#load_driver_user_id option:selected").text();
+      $('#load_driver_cents_pm').val(dropValue); 
+    });
+  });
+});
+</script>
+<% end %>
 <script>
 // hide show divs on load
 $(document).ready(function() {
@@ -65,17 +78,21 @@ $(document).ready(function(){
 </script>
 
 
-<script>
-$(document).ready(function(){ 
-  $(function() {     
-    $("#select-driver").ready(function() {  
-      $('#load_driver_user_id').val(this.value); 
-      var dropValue = $("#load_driver_user_id option:selected").text();
-      $('#load_driver_cents_pm').val(dropValue); 
-    });
-  });
-});
-</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

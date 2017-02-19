@@ -23,7 +23,8 @@ class DriverUsersRegistrations::RegistrationsController < Devise::RegistrationsC
                                           :emergency_contact,
                                           :emergency_contact_number,
                                           :time_zone,
-                                          :driver_rate_id  
+                                          :driver_rate_id,
+                                          :amount 
                                           )
   end
 
@@ -52,7 +53,8 @@ class DriverUsersRegistrations::RegistrationsController < Devise::RegistrationsC
                                           :company_driver,
                                           :owner_operator_pbm,
                                           :owner_operator,
-                                          :driver_rate_id
+                                          :driver_rate_id,
+                                          :amount
                                           )
                               
                               

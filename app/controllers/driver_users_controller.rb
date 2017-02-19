@@ -194,7 +194,8 @@ class DriverUsersController < UsersController
                                         :company_driver,
                                         :owner_operator,
                                         :owner_operator_pbm,
-                                        :driver_rate_id          
+                                        :driver_rate_id,
+                                        :amount
                                         )
                               
   end

@@ -30,7 +30,7 @@ Percentage.where(amount: ".40").first_or_create(amount: ".40")
 Percentage.where(amount: ".45").first_or_create(amount: ".45") 
 Percentage.where(amount: ".50").first_or_create(amount: ".50") 
 
-
+DriverRate.where(amount: ".00").first_or_create(amount: ".00") 
 DriverRate.where(amount: ".10").first_or_create(amount: ".10") 
 DriverRate.where(amount: ".15").first_or_create(amount: ".15")
 DriverRate.where(amount: ".18").first_or_create(amount: ".18")

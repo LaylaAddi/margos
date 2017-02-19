@@ -30,7 +30,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :employment_status, default: "not_active"
       t.string :time_zone  
       t.boolean :app_agree_terms
-      t.string :driver_rate_id, index: true 
+      t.integer :driver_rate_id, index: true, default: 1  
       t.decimal  :driver_rpm
 
  

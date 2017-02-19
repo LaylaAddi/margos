@@ -494,8 +494,6 @@ class AddTable < ActiveRecord::Migration[5.0]
     create_table :driver_rates do |t|
       t.string :amount  
 
-
-
       t.timestamps
     end
     
