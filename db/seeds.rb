@@ -30,6 +30,92 @@ Percentage.where(amount: ".40").first_or_create(amount: ".40")
 Percentage.where(amount: ".45").first_or_create(amount: ".45") 
 Percentage.where(amount: ".50").first_or_create(amount: ".50") 
 
+
+DriverRate.where(amount: ".10").first_or_create(amount: ".10") 
+DriverRate.where(amount: ".15").first_or_create(amount: ".15")
+DriverRate.where(amount: ".18").first_or_create(amount: ".18")
+DriverRate.where(amount: ".20").first_or_create(amount: ".20") 
+DriverRate.where(amount: ".21").first_or_create(amount: ".21") 
+DriverRate.where(amount: ".22").first_or_create(amount: ".22") 
+DriverRate.where(amount: ".23").first_or_create(amount: ".23") 
+DriverRate.where(amount: ".24").first_or_create(amount: ".24") 
+DriverRate.where(amount: ".25").first_or_create(amount: ".25") 
+DriverRate.where(amount: ".26").first_or_create(amount: ".26") 
+DriverRate.where(amount: ".27").first_or_create(amount: ".27") 
+DriverRate.where(amount: ".28").first_or_create(amount: ".28") 
+DriverRate.where(amount: ".29").first_or_create(amount: ".29") 
+DriverRate.where(amount: ".30").first_or_create(amount: ".30") 
+DriverRate.where(amount: ".31").first_or_create(amount: ".31") 
+DriverRate.where(amount: ".32").first_or_create(amount: ".32") 
+DriverRate.where(amount: ".33").first_or_create(amount: ".33") 
+DriverRate.where(amount: ".34").first_or_create(amount: ".34") 
+DriverRate.where(amount: ".35").first_or_create(amount: ".35") 
+DriverRate.where(amount: ".36").first_or_create(amount: ".36") 
+DriverRate.where(amount: ".37").first_or_create(amount: ".37") 
+DriverRate.where(amount: ".38").first_or_create(amount: ".38") 
+DriverRate.where(amount: ".39").first_or_create(amount: ".39") 
+DriverRate.where(amount: ".40").first_or_create(amount: ".40") 
+DriverRate.where(amount: ".41").first_or_create(amount: ".41") 
+DriverRate.where(amount: ".42").first_or_create(amount: ".42") 
+DriverRate.where(amount: ".43").first_or_create(amount: ".43") 
+DriverRate.where(amount: ".44").first_or_create(amount: ".44") 
+DriverRate.where(amount: ".45").first_or_create(amount: ".45") 
+DriverRate.where(amount: ".46").first_or_create(amount: ".46") 
+DriverRate.where(amount: ".47").first_or_create(amount: ".47") 
+DriverRate.where(amount: ".48").first_or_create(amount: ".48") 
+DriverRate.where(amount: ".49").first_or_create(amount: ".49") 
+DriverRate.where(amount: ".50").first_or_create(amount: ".50") 
+DriverRate.where(amount: ".51").first_or_create(amount: ".51") 
+DriverRate.where(amount: ".52").first_or_create(amount: ".52") 
+DriverRate.where(amount: ".53").first_or_create(amount: ".53") 
+DriverRate.where(amount: ".54").first_or_create(amount: ".54") 
+DriverRate.where(amount: ".55").first_or_create(amount: ".55") 
+DriverRate.where(amount: ".56").first_or_create(amount: ".56") 
+DriverRate.where(amount: ".57").first_or_create(amount: ".57") 
+DriverRate.where(amount: ".58").first_or_create(amount: ".58") 
+DriverRate.where(amount: ".59").first_or_create(amount: ".59") 
+DriverRate.where(amount: ".60").first_or_create(amount: ".60") 
+DriverRate.where(amount: ".61").first_or_create(amount: ".61") 
+DriverRate.where(amount: ".62").first_or_create(amount: ".62") 
+DriverRate.where(amount: ".63").first_or_create(amount: ".63") 
+DriverRate.where(amount: ".64").first_or_create(amount: ".64") 
+DriverRate.where(amount: ".65").first_or_create(amount: ".65") 
+DriverRate.where(amount: ".66").first_or_create(amount: ".66") 
+DriverRate.where(amount: ".67").first_or_create(amount: ".67") 
+DriverRate.where(amount: ".68").first_or_create(amount: ".68") 
+DriverRate.where(amount: ".69").first_or_create(amount: ".69") 
+DriverRate.where(amount: ".70").first_or_create(amount: ".70") 
+DriverRate.where(amount: ".71").first_or_create(amount: ".71") 
+DriverRate.where(amount: ".72").first_or_create(amount: ".72") 
+DriverRate.where(amount: ".73").first_or_create(amount: ".73") 
+DriverRate.where(amount: ".74").first_or_create(amount: ".74") 
+DriverRate.where(amount: ".75").first_or_create(amount: ".75") 
+DriverRate.where(amount: ".76").first_or_create(amount: ".76") 
+DriverRate.where(amount: ".77").first_or_create(amount: ".77") 
+DriverRate.where(amount: ".78").first_or_create(amount: ".78") 
+DriverRate.where(amount: ".79").first_or_create(amount: ".79") 
+DriverRate.where(amount: ".80").first_or_create(amount: ".80") 
+DriverRate.where(amount: ".81").first_or_create(amount: ".81") 
+DriverRate.where(amount: ".82").first_or_create(amount: ".82") 
+DriverRate.where(amount: ".83").first_or_create(amount: ".83") 
+DriverRate.where(amount: ".84").first_or_create(amount: ".84") 
+DriverRate.where(amount: ".85").first_or_create(amount: ".85") 
+DriverRate.where(amount: ".86").first_or_create(amount: ".86") 
+DriverRate.where(amount: ".87").first_or_create(amount: ".87") 
+DriverRate.where(amount: ".88").first_or_create(amount: ".88") 
+DriverRate.where(amount: ".89").first_or_create(amount: ".89")
+DriverRate.where(amount: ".90").first_or_create(amount: ".90") 
+DriverRate.where(amount: ".91").first_or_create(amount: ".91") 
+DriverRate.where(amount: ".92").first_or_create(amount: ".92") 
+DriverRate.where(amount: ".93").first_or_create(amount: ".93") 
+DriverRate.where(amount: ".94").first_or_create(amount: ".94") 
+DriverRate.where(amount: ".95").first_or_create(amount: ".95") 
+DriverRate.where(amount: ".96").first_or_create(amount: ".96") 
+DriverRate.where(amount: ".97").first_or_create(amount: ".97") 
+DriverRate.where(amount: ".98").first_or_create(amount: ".98") 
+DriverRate.where(amount: ".99").first_or_create(amount: ".99") 
+
+
    States =  
   [
   'Alabama', 
@@ -205,6 +291,7 @@ leadfoot = DriverUser.create(
   emergency_contact_number: Faker::PhoneNumber.phone_number,
   employment_status: "active",
   company_driver: true,
+  driver_rate_id: 40,
   driver_rpm: 0.40
   )
   puts leadfoot.inspect
@@ -224,7 +311,8 @@ stumpy = DriverUser.create(
   emergency_contact_number: Faker::PhoneNumber.phone_number,
   employment_status: "active",
   company_driver: true,
-  driver_rpm: 0.22
+  driver_rate_id: 30,
+  driver_rpm: 0.40
   )
   puts stumpy.inspect
   
@@ -242,8 +330,8 @@ stumpy = DriverUser.create(
   emergency_contact: Faker::Name.first_name,
   emergency_contact_number: Faker::PhoneNumber.phone_number,
   employment_status: "active",
-  owner_operator: true,
-  driver_rpm: 0.00
+  owner_operator: true
+
   )
   puts slowmoe.inspect
   
@@ -262,7 +350,8 @@ joe = DriverUser.create(
   emergency_contact_number: Faker::PhoneNumber.phone_number,
   employment_status: "active",
   owner_operator_pbm: true,
-  driver_rpm: 1.00
+  driver_rate_id: 20,
+  driver_rpm: 0.40
   )
   puts joe.inspect 
   

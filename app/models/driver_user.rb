@@ -6,6 +6,7 @@ class DriverUser < User
   has_many :driver_statements
   has_many :driver_checkins
   has_many :messages 
+  belongs_to :driver_rate 
   validates :driver_rpm, :numericality => { :only_decimal => true, on: :update,
     :message => "Set A Rate - Select 0.00 if Owner Operator" } 
   ransack_alias :driver_search_params,

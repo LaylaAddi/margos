@@ -80,13 +80,7 @@
             <%= f.input :company_driver %>                              
             <%= f.input :owner_operator %>                              
             <%= f.input :owner_operator_pbm %>
-            <% if @user.driver_rpm.present? %>
-            <strong> Current Driver Rate
-            <%= number_to_currency(@user.driver_rpm)  %>
-            </strong>
-            <% end %>
-            <%= f.input :driver_rpm, collection: ApplicationRecord::DriverRpm, 
-                label: false, prompt: "" %>
+            <%= f.collection_select :driver_rate_id, DriverRate.all, :id, :amount %> 
             <br />
 
             

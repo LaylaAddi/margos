@@ -43,6 +43,10 @@ end
     "#{full_name} | #{is_company_driver} #{is_owner_operator} #{is_owner_operator_pbm}"
   end
   
+  def driver_rate
+    self.driver_rate_id.amount
+  end
+  
   def profile_admin_user
     if self.company_profile_admin == "true"
       return "Company Admin"

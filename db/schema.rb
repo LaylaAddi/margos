@@ -208,6 +208,12 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.index ["driver_user_id"], name: "index_driver_checkins_on_driver_user_id", using: :btree
   end
 
+  create_table "driver_rates", force: :cascade do |t|
+    t.string   "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "driver_statements", force: :cascade do |t|
     t.string   "notes"
     t.integer  "driver_user_id"
@@ -541,10 +547,11 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.boolean  "owner_operator",           default: false
     t.boolean  "owner_operator_pbm",       default: false
     t.boolean  "shipping_receiving",       default: false
-    t.decimal  "driver_rpm",               default: "0.0"
     t.string   "employment_status",        default: "not_active"
     t.string   "time_zone"
     t.boolean  "app_agree_terms"
+    t.string   "driver_rate_id"
+    t.decimal  "driver_rpm"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -563,6 +570,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+    t.index ["driver_rate_id"], name: "index_users_on_driver_rate_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree

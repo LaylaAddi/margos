@@ -57,10 +57,11 @@
       </div>
       <div id="hideCents">
         <div class="col-sm-2">
-          <div class="form-group input-group">
-            <div class="hidden">
-              <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
-                :id, :driver_rpm %> 
+          <div class="form-group input-group"> 
+            <div class=""> 
+          <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
+            :driver_rate_id, :driver_rate, {include_blank: "Select Driver"} %>   
+
             </div>
             <%= f.input :driver_cents_pm %>
           </div>
