@@ -31,6 +31,7 @@ class DriverUsersController < UsersController
   
   def show 
     @driver = DriverUser.find(params[:id]) 
+    @driver_rate_per_mile = @driver.driver_rate
     @company_user = current_company_user
   	@driver_statements = @driver.driver_statements if !nil? 
     @active = @driver.loads.where(["status_name = ?", "Active"])
@@ -192,7 +193,9 @@ class DriverUsersController < UsersController
                                         :time_zone,
                                         :company_driver,
                                         :owner_operator,
-                                        :owner_operator_pbm
+                                        :owner_operator_pbm,
+                                        :driver_rate_id,
+                                        :amount
                                         )
                               
   end

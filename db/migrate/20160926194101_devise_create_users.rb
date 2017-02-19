@@ -27,10 +27,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.boolean :owner_operator, default: false 
       t.boolean :owner_operator_pbm, default: false 
       t.boolean :shipping_receiving, default: false 
-      t.decimal :driver_rpm, default: 0.00
       t.string :employment_status, default: "not_active"
       t.string :time_zone  
       t.boolean :app_agree_terms
+      t.integer :driver_rate_id, index: true, default: 1  
+      t.decimal  :driver_rpm
 
  
       

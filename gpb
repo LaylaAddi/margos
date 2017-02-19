@@ -1,5 +1,5 @@
 git add -A
-git commit -m "update load edit and new JS calculating owner loads test" 
-git push -u driverrate  
+git commit -m "set rate driver and updated js" 
+git push -u origin setdriverrate  
 
  

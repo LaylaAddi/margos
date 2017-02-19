@@ -14,8 +14,7 @@
               <small>
                 (<%= @driver.type_of_user %>) 
                 <span class="text-red">
-                rate <%= number_to_currency(@driver.driver_rpm) if current_company_user %>/mile
-                 
+                  rate <%= number_to_currency(@driver.driver_rate.amount) %>
                 </span>
               </small>
             </h2>

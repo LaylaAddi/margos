@@ -16,6 +16,8 @@ validates :cellphone, length: { is: 10 }
 def cellphone=(cellphone)
   write_attribute(:cellphone, cellphone.gsub(/\D/, ''))
 end
+
+
   def is_company_driver
     if self.company_driver == true
       return "Company Driver"
@@ -43,6 +45,7 @@ end
     "#{full_name} | #{is_company_driver} #{is_owner_operator} #{is_owner_operator_pbm}"
   end
   
+
   def profile_admin_user
     if self.company_profile_admin == "true"
       return "Company Admin"
@@ -97,7 +100,7 @@ end
     elsif self.type == "ShipperUser"
       return "Broker/Shipper"
     elsif self.type == "HrcUser"
-      return "HRC User"  
+      return "Company User"  
     end
   end
   

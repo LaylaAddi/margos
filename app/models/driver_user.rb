@@ -6,6 +6,7 @@ class DriverUser < User
   has_many :driver_statements
   has_many :driver_checkins
   has_many :messages 
+  belongs_to :driver_rate     
   validates :driver_rpm, :numericality => { :only_decimal => true, on: :update,
     :message => "Set A Rate - Select 0.00 if Owner Operator" } 
   ransack_alias :driver_search_params,
@@ -18,8 +19,10 @@ class DriverUser < User
     '+1'+self.cellphone 
   end
 
-
-
+  def driver_rate_set_in_model 
+    self.driver_rate.amount 
+  end
+  
 
  private
  
@@ -32,7 +35,7 @@ class DriverUser < User
     end
   end 
   
-	def self.import(file)	
+  def self.import(file)	
   	CSV.foreach(file.path, headers: true) do |row|
     	DriverUser.create! row.to_hash
   	end
