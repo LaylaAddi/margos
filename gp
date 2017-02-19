@@ -1,5 +1,5 @@
 git add -A
-git commit -m "driver rate merge"
+git commit -m "safe push stash"
 git push -u origin master      
     
 
