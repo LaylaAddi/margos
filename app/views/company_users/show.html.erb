@@ -9,7 +9,13 @@
         <div class="profile-info-left">
           <div class="text-center"> 
                  <%= image_tag("noUserPhoto.jpg", class: "img-rounded img-responsive img-circle") %> 
-            <h2><%= @hrc_user.full_name %> <small>(<%= @hrc_user.type_of_user %>)</small></h2>
+            <h2>
+              <%= @company_user.full_name %>
+            <br />
+              <small>
+                (<%= @company_user.type_of_user %>)
+              </small>
+            </h2>
           </div>
           <div class="action-buttons">
             <div class="row">
@@ -47,31 +53,31 @@
 
           </div>
           <div class="section">
-            <h3>Contact <%= @hrc_user.first_name %></h3>
+            <h3>Contact <%= @company_user.first_name %></h3>
             <ul class="list-unstyled list-social">
-              <li><i class="fa fa-paper-plane"></i> <%= @hrc_user.email %></li>
-              <li><i class="fa fa-mobile-phone"></i> <%= @hrc_user.cellphone %></li>
+              <li><i class="fa fa-paper-plane"></i> <%= @company_user.email %></li>
+              <li><i class="fa fa-mobile-phone"></i> <%= @company_user.cellphone %></li>
               <li>
-                <% if @hrc_user.telephone.present? %>
-                <i class="fa fa-phone"></i> <%= @hrc_user.telephone %>
+                <% if @company_user.telephone.present? %>
+                <i class="fa fa-phone"></i> <%= @company_user.telephone %>
                 <% end %>
-                <% if @hrc_user.extention.present? %>
-                ext. <%= @hrc_user.extention %>
+                <% if @company_user.extention.present? %>
+                ext. <%= @company_user.extention %>
                 <% end %>
                 </li>
                <div>
                 <strong>Emergency Contact</strong>
-              <li><i class="fa fa-heart-o"></i> <%= @hrc_user.emergency_contact %></li>
-              <li><i class="fa fa-user-md"></i> <%= @hrc_user.emergency_contact_number %></li>
+              <li><i class="fa fa-heart-o"></i> <%= @company_user.emergency_contact %></li>
+              <li><i class="fa fa-user-md"></i> <%= @company_user.emergency_contact_number %></li>
               </div>
               <hr>
               <div>
                 <strong>Home Address</strong>
               <address>
-                <%= @hrc_user.street %><br />
-                <%= @hrc_user.city %><br />
-                <%= @hrc_user.state %> 
-                <%= @hrc_user.zip %>
+                <%= @company_user.street %><br />
+                <%= @company_user.city %><br />
+                <%= @company_user.state %> 
+                <%= @company_user.zip %>
               </address>
       </div>
        

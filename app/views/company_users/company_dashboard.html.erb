@@ -2,12 +2,11 @@
 <div class="container">
   <div class="user-profile">
     <div class="profile-header-background">
-<% if @company_user.profile_bg_url.present? %>
-              <%= image_tag @company_user.profile_bg_url(:bg_main), class: "round" %>  
-              <% else %>
-<%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
-              <% end %> 
-      
+      <% if @company_user.profile_bg_url.present? %>
+        <%= image_tag @company_user.profile_bg_url(:bg_main), class: "round" %>  
+      <% else %>
+        <%= image_tag("homeheader.jpg", class: "img-rounded img-responsive") %>  
+      <% end %> 
     </div>
     <div class="row">
       <div class="col-md-4">
@@ -21,15 +20,13 @@
                 class: "img-rounded img-responsive img-circle") %> 
               <% end %>
  
-            <h2><%= @company_user.full_name %> <small>(<%= @company_user.type_of_user %>)</small></h2>
+            <h2><%= @company_user.full_name %><br /> <small>(<%= @company_user.type_of_user %>)</small></h2>
           </div>
           <div class="action-buttons">
             <div class="row">
               <div class="col-xs-6">
-              
               </div>
               <div class="col-xs-6">
-             
               </div>
             </div>
           </div>
@@ -38,10 +35,8 @@
             <p></p>  
           </div>
           <div class="section">
-                       <h3>Load Statistics</h3>
+            <h3>Load Statistics</h3>
             <p>
-             
-
               <span class="badge">
                 <%= @active_loads.count %>
               </span> Active Loads 
@@ -56,9 +51,6 @@
                 <%= @paid_loads.count  %>
               </span> Paid Loads
             </p>
-
-
-
           </div>
           <div class="section">
             <h3>Contact <%= @company_user.first_name %></h3>
@@ -87,8 +79,7 @@
                 <%= @company_user.state %> 
                 <%= @company_user.zip %>
               </address>
-      </div>
-       
+              </div>
             </ul>
           </div>
         </div>

@@ -99,7 +99,7 @@ end
       return "Driver"
     elsif self.type == "ShipperUser"
       return "Broker/Shipper"
-    elsif self.type == "HrcUser"
+    elsif self.type == "CompanyUser" 
       return "Company User"  
     end
   end
