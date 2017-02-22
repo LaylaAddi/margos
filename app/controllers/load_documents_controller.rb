@@ -1,6 +1,6 @@
 class LoadDocumentsController < ApplicationController
   before_action :set_load_document, only: [:show, :edit, :update, :destroy]
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy] 
   # GET /load_documents
   # GET /load_documents.json
   def index

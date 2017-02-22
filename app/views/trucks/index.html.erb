@@ -13,6 +13,7 @@
       <th>Plate State</th>
       <th>Color</th>
       <th>Number</th>
+      <th>Average MPG</th>
       <th>Vin</th>
       <th>Notes</th>
       <th>Driver</th>
@@ -31,16 +32,21 @@
         <td><%= truck.plate_state %></td>
         <td><%= truck.color %></td>
         <td><%= truck.number %></td>
+        <td><%= truck.average_mpg %></td>
         <td><%= truck.vin %></td>
         <td><%= truck.notes %></td>
         
         <td>
-          <% if !truck.driver_user.first_name.nil? %>
-          <%= truck.driver_user.first_name %>
+          <% if truck.driver_user.try(:full_name).present? %>
+          <%= link_to driver_user_path(truck.driver_user) do %> 
+          <%= truck.driver_user.try(:full_name) %>
           <% end %>
-          <% if !truck.driver_user.last_name.nil? %>
-          <%= truck.driver_user.last_name %>
+          <% else %>
+          <%= link_to edit_truck_path(truck) do %>
+          No Driver Assigned 
           <% end %>
+          <% end %>
+
         </td>
         
 

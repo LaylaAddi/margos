@@ -15,6 +15,7 @@
     <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
       :id, :full_name, include_blank: "Select Driver"  %> 
     <%= f.input :service_status, collection: ApplicationRecord::TruckTrailerStatus %>
+    <%= f.input :average_mpg, collection: ApplicationRecord::TruckMPG  %>  
     <%= f.input :year %>
     <%= f.input :make %>
     <%= f.input :model %>

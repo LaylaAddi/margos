@@ -1,6 +1,6 @@
 class CompanyProfileMembershipsController < ApplicationController
   before_action :set_company_profile_membership, only: [:show, :edit, :update, :destroy]
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy] 
 
   # GET /company_profile_memberships
   # GET /company_profile_memberships.json
@@ -53,7 +53,7 @@ class CompanyProfileMembershipsController < ApplicationController
   # PATCH/PUT /company_profile_memberships/1
   # PATCH/PUT /company_profile_memberships/1.json
   def update
-    @users = User.find(params[:user_id])
+    #@users = User.find(params[:user_id])
     @company_profile = CompanyProfile.find(params[:company_profile_id]) 
     respond_to do |format|
       if @company_profile_membership.update(company_profile_membership_params)

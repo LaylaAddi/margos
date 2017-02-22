@@ -1,6 +1,6 @@
 class CompanyProfilesController < ApplicationController
   before_action :set_company_profile, only: [:show, :edit, :update, :destroy, :vendors]
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy] 
 
   def index
     @company_profiles = CompanyProfile.all

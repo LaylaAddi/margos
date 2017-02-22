@@ -71,6 +71,7 @@ class LoadsController < ApplicationController
     @load = current_company_user.loads.build 
     @load.load_origin_addresses.build
     @driver = DriverUser.where(["employment_status = ?", "active"]) 
+
     @company_profile = CompanyProfile.all
 
   end
@@ -241,6 +242,8 @@ class LoadsController < ApplicationController
                                     :driver_cents_pm,
                                     :percentage_id,
                                     :driver_rate_id, 
+                                    :national_average_diesel_price,   
+                                    :estimated_diesel_cost,
                                     load_origin_addresses_attributes: 
                                       [
                                       :street,

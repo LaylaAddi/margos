@@ -1,5 +1,5 @@
-
-<h3>New Load</h3>
+<% @truck_average_mpg = 5.5 %>
+<h3>New Load</h3> <% number_to_currency(@national_average_diesel_price) %>
 <%= simple_form_for(@load, html: { class: "input-sm" }) do |f| %>
 <%= f.error_notification %>
 <div class="col-sm-12 col-sm-offset-0 shadow round animated">
@@ -60,18 +60,20 @@
           <div class="form-group input-group"> 
             <div class="hidden">  
               <%= f.collection_select :driver_user_id, @driver.all.order(:first_name),
-              :id, :driver_rate_set_in_model, {include_blank: "Select Driver"} %>   
-
+              :id, :driver_rate_set_in_model, {include_blank: "Select Driver"} %>     
             </div>
             <%= f.input :driver_cents_pm %>
+            
           </div>
         </div>
       </div>
+
       <div class="col-sm-3">
         <div class="form-group input-group">
           <!--<span class="input-group-addon"><i class="fa fa-clock-o"></i> </span>-->
           <%= f.input :status_name, collection: ApplicationRecord::LoadStatusStatus, 
             label: "Booking Status" %> 
+ 
         </div>
       </div>
       <div class="col-sm-3">
@@ -101,7 +103,7 @@
       <div class="col-sm-2 col-sm-offset-0">
         <div class="form-group input-group">
           <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
-          <!--<span class="input-group-addon">e.g. 33x22</span>-->
+          <!--<span class="input-group-addon">e.g. 33x22</span>--> 
           <%= f.input :dimentions, label: false, placeholder: 'Dimentions' %>      
         </div>
       </div>
@@ -171,29 +173,80 @@
             <%= f.input :destination_zip, label: false, placeholder: "zip code", input_html: {value: "33434"}%> 
             <%= f.input :destination_phone, label: false, placeholder: "Telephone", input_html: {value: "716-986-4010"} %>
             <%= f.input :destination_contact, label: false, placeholder: "Contact Person", input_html: {value: "Big Al"} %>
-            <%= f.input :delivery_notes, label: false, placeholder: "Delivery Notes", input_html: {value: "Call Big all from street 555-555-5555"} %>
+            <%= f.input :delivery_notes, label: false, placeholder: "Delivery Notes", input_html: {value: "Call Big Al from street 555-555-5555"} %>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div id="idToHide">
-        <div class="col-sm-3 col-sm-offset-0">
-          <%= f.input :miles, label: false, placeholder: "Total Miles" %>
-            </div>
-      </div>
-    </div>
-    <div class="form-actions pull-right">
-      <div id="theSubmitButton">
-        <%= f.button :submit, class: "btn btn-success btn-xs round" %>
-      </div>
-      
-      <% link_to 'All Loads', loads_path, class: "btn btn-info btn-xs round" %>
- </div>
-      <% end %>
-      <div id="idToHide2"><%= render "calculate_distance" %></div>
-   
-  </div>
-  <div id="idToHide3"><%= render "new_map" %></div>
+     
+<hr>
+<div class="row">
+        <div id="idToHide">
+      <div class="col-sm-3">
+        <div class="form-group input-group">
+       <%= f.input :miles, label: false, placeholder: "Total Miles" %>
+
+<div class="hidden">
+         <%= f.text_field :national_average_diesel_price,  
+           value: (number_with_precision(@national_average_diesel_price, :precision => 2) || 0) %><br><br> 
+          Diesel Cost<%= f.text_field :estimated_diesel_cost %> <br><br> 
+          average mpg<input id="truckAveMpg" value="<%= @truck_average_mpg %>"/><br><br> 
+          miles div by ave<input id="milesDivByAve" /><br><br> 
+          miles div X @average_mpg<input id="totalCost" /> <br><br> 
+           Cents To Driver<input id="centolasToDriver" /> <br><br> 
+           Rate To Driver<input id="rateToDriver" /> <br><br> 
+           PL<input id="profitLoss" /> 
 </div>
-<%= render "new_js" %><!--JS for showing and removing inputs-->
+        </div>
+      </div> 
+       </div>  <!-- end idToHide-->   
+ <div class="col-sm-3">
+        <div class="form-group input-group">
+
+        </div>
+      </div>  
+ <div class="col-sm-6">
+        <div class="form-group input-group">
+<div id="hideCalculation">
+<label>Invoice Price</label>          
+<strong><p id="invoicePriceParagraph"></p></strong>
+<label>Driver Pay</label>  
+<strong><p id="paymentDriver"class="text-red"></p></strong>
+<label>Fuel</label>
+<strong><p id="fuel" class="text-red"></p></strong>
+<label>Expected Profit</label>
+<strong><p id="totola"></p> </strong>
+
+ <button id="calcPL" type="button", class="btn btn-success btn-xs round">Calculate Rate</button> 
+ </div>
+        </div>
+      </div>  
+      
+
+      
+     </div> <!--end of row-->
+    
+     
+     
+     
+     
+     
+
+
+
+   
+
+      
+     
+<div class="form-actions pull-right">
+  <div id="theSubmitButton">
+    <%= f.button :submit, class: "btn btn-success btn-xs round" %>
+  </div>
+  </div>
+
+      <% end %>
+      <%= render "new_js" %><!--JS for showing and removing inputs-->
+      <div id="idToHide2"><%= render "calculate_distance" %></div>
+      <div id="idToHide3"><%= render "new_map" %></div>
+
+

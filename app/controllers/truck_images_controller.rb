@@ -32,10 +32,11 @@ class TruckImagesController < ApplicationController
 
     respond_to do |format|
       if @truck_image.save
-        format.html { redirect_to truck_path(@truck), notice: 'The Trucks Image was successfully created.' }
+        format.html { redirect_to truck_path(@truck), notice: 'The Trucks Image was successfully added.' } 
         format.json { render :show, status: :created, location: @truck_image }
       else
-        format.html { render :new }
+        flash[:error] = @truck_image.errors.full_messages.to_sentence
+        format.html { redirect_to truck_path(@truck) }
         format.json { render json: @truck_image.errors, status: :unprocessable_entity }
       end
     end

@@ -24,6 +24,8 @@ class DriverUser < User
   end
   
 
+  
+
  private
  
   def self.as_csv

@@ -3,9 +3,9 @@ $(document).ready(function() {
     $('select[id="select-driver"]').change(function() {
         var str = $('select[id="select-driver"] option:selected').text();
         if (str.indexOf("Company") >= 0) { 
-            $('#hideCents').fadeIn( "slow" );
+            $('#hideCents, #hideCalculation').fadeIn( "slow" );
         } else {
-            $('#hideCents').fadeOut( "slow" );  
+            $('#hideCents, #hideCalculation').fadeOut( "slow" );  
         }
     });
 });
@@ -28,9 +28,29 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function(){
-    $("#load_has_multiple_pd").click(function(){
-        $("#idToHide, #idToHide2, #idToHide3").fadeToggle( "slow", "linear" ); 
-    });
+  
+$('#load_has_multiple_pd').on('click', function(){
+    if ( $(this).is(':checked') ) {
+        $("#idToHide, #idToHide2, #idToHide3, #hideCalculation").hide("slow");
+    } 
+    else {
+        $("#idToHide, #idToHide2, #idToHide3, #theSubmitButton").show("slow");  
+    }
+});
+
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  
+$('#load_has_multiple_pd').on('click', function(){
+    if ( $(this).is(':checked') ) {
+        $("#theSubmitButton").show();  
+    } 
+
+});
+
 });
 </script>
 
@@ -80,22 +100,102 @@ $(document).ready(function(){
 
 
 
-
+<!--Hide buttons/show buttons-->
 <script>
     $(document).ready(function() {
-
-        if($('#load_miles').val() == 0 ){$('#theSubmitButton').hide();}  
-
+        if($('#load_miles').val() == 0 ){$('#theSubmitButton, #calcPL').hide();}  
         $('#setVal').on('click' , function() {
-
              if( this.text != 0){
-
-                   $('#theSubmitButton').show("slow");
+                   $('#theSubmitButton, #calcPL').show("slow");
               }
-
               else{
-                   $('#theSubmitButton').hide(); 
+                   $('#theSubmitButton, #calcPL').hide("slow"); 
              }
         });
       });
     </script>
+    
+    
+    
+    
+
+    
+    
+<script>
+    $(document).ready(function() {
+    $("#theSubmitButton").click(function() {    
+  var loadMiles = $("#load_miles").val(); 
+  var truckAverageMpg = $('#truckAveMpg').val();
+  var nationalAverage = $('#load_national_average_diesel_price').val();
+  var milesDivTruckAve = (loadMiles / truckAverageMpg);  
+
+  $('#milesDivByAve').val(milesDivTruckAve); 
+  $('#totalCost').val(nationalAverage * milesDivTruckAve);    
+    $('#load_estimated_diesel_cost').val(nationalAverage * milesDivTruckAve);   
+    });
+});
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    $('#calcPL').click(function() {    
+    var loadInvoicePrice = parseFloat($("#load_invoice_price").val());   
+    var loadMiles = $("#load_miles").val(); 
+    var truckAverageMpg = $('#truckAveMpg').val();
+    var nationalAverage = $('#load_national_average_diesel_price').val();
+    var milesDivTruckAve = (loadMiles / truckAverageMpg);  
+    var cents2driver = $("#load_driver_cents_pm").val();  
+    $('#milesDivByAve').val(milesDivTruckAve); 
+    $('#totalCost').val(nationalAverage * milesDivTruckAve);    
+    $('#load_estimated_diesel_cost').val(nationalAverage * milesDivTruckAve);  
+    var dieselCost = parseFloat(nationalAverage * milesDivTruckAve)
+    var ratePTD = parseFloat(loadMiles * cents2driver); 
+    var theTotal = parseFloat(loadInvoicePrice - dieselCost - ratePTD);
+
+    $('#profitLoss').val(theTotal);    
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function() {
+    $('#calcPL').click(function() {        
+  var loadMiles = $("#load_miles").val();
+  var centsToDriver = parseFloat($('#centolasToDriver').val($("#load_driver_cents_pm").val())); 
+  var getCentolas = $('#centolasToDriver').val();
+  var rateTooDriver =  parseFloat($("#rateToDriver").val(loadMiles * getCentolas));
+  
+    });
+});
+</script>    
+
+
+
+<script>
+    $(document).ready(function() {
+    $("#theSubmitButton").click(function() {   
+  var loadMiles = $("#load_miles").val(); 
+
+  var milesDivTruckAve = (loadMiles / truckAverageMpg);  
+
+  $('#milesDivByAve').val(milesDivTruckAve); 
+  $('#totalCost').val(nationalAverage * milesDivTruckAve);    
+    $('#load_estimated_diesel_cost').val(nationalAverage * milesDivTruckAve);   
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function() {
+    $('#calcPL').mouseover(function() {   
+      
+      var inv = parseFloat($('#invoicePriceParagraph').text($('#load_invoice_price').val()));     
+      var dp = parseFloat($("#paymentDriver").text($('#rateToDriver').val())); 
+      var diesel = parseFloat($('#fuel').text($('#load_estimated_diesel_cost').val()));  
+      var zeTotal = parseFloat($('#totola').text($('#profitLoss').val()));   
+    });
+});
+</script>
+
+

@@ -1,5 +1,5 @@
 class McsController < ApplicationController
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy] 
  def show
     @company_profile = CompanyProfile.find(params[:company_profile_id])
     @dot = @company_profile.us_dot

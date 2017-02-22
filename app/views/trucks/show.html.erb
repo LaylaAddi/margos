@@ -12,7 +12,7 @@
   <div class="col-lg-12">
     <div class="panel panel-default animated round shadow">
       <div class="panel-heading animated round shadow">
-        <h2>Truck Driver <%= @truck.driver_user.full_name %></h2>
+        <h2>Truck Driver <%= @driver.try(:full_name) %></h2>
       </div>
       <div class="panel-body">
         <table class="table table-bordered table-striped table-condensed table-responsive">
@@ -24,6 +24,7 @@
               <th>Plate</th>
               <th>Color</th>
               <th>VIN</th>
+              <th>Average MPG</th>
               <th>Service Status</th>
             </tr>
           </thead>
@@ -35,6 +36,7 @@
               <td><%= @truck.plate %></td>
               <td><%= @truck.color %></td>
               <td><%= @truck.vin %></td>
+              <td><%= @truck.average_mpg %></td>
               <td><%= @truck.service_status %></td>
             </tr>
           </tbody>
@@ -52,7 +54,13 @@
           <tbody>
             <tr>
               <td><%= @truck.number %></td>
-              <td>  <%= link_to @truck.driver_user.full_name, driver_user_path(@driver) %></td>
+              <td>  
+              <% if @driver.present? %>
+              <%= link_to @driver.try(:full_name), driver_user_path(@driver) %>
+              <% else %>
+              No Driver Assigned 
+              <% end %>
+              </td>
               <td><%= @truck.notes %></td>
             </tr>
           </tbody>
@@ -114,7 +122,7 @@
       </div>
     </div>
 <div class="col-xs-8">
-    <%= simple_form_for [@truck, @truck_image] do |truck_image| %>
+    <%= simple_form_for [@truck, TruckImage.new] do |truck_image| %> 
     <%= truck_image.input :image_file, as: :file, label: "Add Image" %> 
     <%= truck_image.input :notes %>
     <div class="form-actions">

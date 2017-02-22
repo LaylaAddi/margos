@@ -23,4 +23,12 @@ module ApplicationHelper
       locals: { message: message }
     })
   end
+  
+  
+  
+  
+  
+
+  
+  
 end

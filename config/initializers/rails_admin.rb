@@ -4,7 +4,7 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless current_company_user.try(:admin) == true 
     
   end
-  config.main_app_name = ["Margo's Cargo", "Back Office"]
+  config.main_app_name = ["Acme App Inc.", "Back Office"]
   ### Popular gems integration
 
   ## == Devise ==

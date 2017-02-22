@@ -1,6 +1,6 @@
 class TrailersController < ApplicationController
   before_action :set_trailer, only: [:show, :edit, :update, :destroy]
-  before_action :validate_hrc_user, except: [:show] 
+  before_action :validate_company_user, except: [:show]  
 
   def index
     @trailers = Trailer.all

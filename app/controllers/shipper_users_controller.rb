@@ -1,5 +1,5 @@
 class ShipperUsersController < UsersController 
-  before_action :validate_hrc_user, only: [:edit, :update, :new, :destroy]
+  before_action :validate_company_user, only: [:edit, :update, :new, :destroy]
   def index
   	@search = ShipperUser.search(params[:q])
   	@shipper_users = @search.result.order(:id).page(params[:page]).per(1000) 

@@ -239,21 +239,21 @@ ActiveRecord::Schema.define(version: 20160929044746) do
   end
 
   create_table "loads", force: :cascade do |t|
-    t.boolean  "has_multiple_pd",             default: false
+    t.boolean  "has_multiple_pd",               default: false
     t.string   "commodity"
     t.string   "weight"
     t.string   "units"
     t.string   "load_size"
-    t.integer  "miles",                       default: 0
-    t.decimal  "invoice_price",               default: "0.0"
-    t.decimal  "booking_fee",                 default: "0.0"
+    t.integer  "miles",                         default: 0
+    t.decimal  "invoice_price",                 default: "0.0"
+    t.decimal  "booking_fee",                   default: "0.0"
     t.decimal  "percent_deducted"
     t.decimal  "total_company_expenses"
     t.decimal  "rate_to_owner_operator"
-    t.decimal  "percent_coverted_to_dollars", default: "0.0"
+    t.decimal  "percent_coverted_to_dollars",   default: "0.0"
     t.decimal  "driver_cents_pm"
-    t.decimal  "rate_after_booking_fee",      default: "0.0"
-    t.decimal  "agent_fee",                   default: "0.0"
+    t.decimal  "rate_after_booking_fee",        default: "0.0"
+    t.decimal  "agent_fee",                     default: "0.0"
     t.date     "pick_up_date"
     t.time     "pick_up_time"
     t.string   "broker_shipper_load_id"
@@ -289,8 +289,10 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.string   "receiver_company_name"
     t.integer  "driver_statement_id"
     t.integer  "percentage_id"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.decimal  "national_average_diesel_price"
+    t.decimal  "estimated_diesel_cost"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.index ["company_profile_id"], name: "index_loads_on_company_profile_id", using: :btree
     t.index ["company_user_id"], name: "index_loads_on_company_user_id", using: :btree
     t.index ["driver_statement_id"], name: "index_loads_on_driver_statement_id", using: :btree
@@ -515,6 +517,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.float    "longitude"
     t.string   "plate"
     t.string   "plate_state"
+    t.decimal  "average_mpg",        default: "5.5"
     t.integer  "driver_user_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false

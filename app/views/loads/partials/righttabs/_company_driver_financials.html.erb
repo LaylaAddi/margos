@@ -68,7 +68,6 @@
       <th>
         Driver Pay
       </th>
-
     </tr>
   </thead>
   <tbody>
@@ -94,6 +93,23 @@
     </tr>
   </tbody>
 </table>
+
+<table class="table table-bordered table-striped table-hover table-condensed table-responsive">
+	<thead>
+		<tr>
+			<th>Average Fuel Price</th>
+			<th>Projected Fuel Cost</th> 
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><%= number_to_currency(@load.national_average_diesel_price) %></td>
+			<td><%= number_to_currency(@load.estimated_diesel_cost) %></td>
+		</tr>
+	</tbody>
+</table>
+
+
 
 <% driver_pay = (@load.driver_cents_pm * @load.miles) %>
 <% rate_after_driver_pay = (@load.invoice_price - driver_pay) %>

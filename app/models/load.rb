@@ -19,20 +19,20 @@ class Load < ApplicationRecord
   
   before_validation :delivery_date, date: { after_or_equal_to: Proc.new { :pick_up_date }, 
   message: "(error) Delivery can't be before pick up" }, on: :create
-  
-  # before_validation :delivery_date, date: { after_or_equal_to: Proc.new { :pick_up_date },  
-  # message: "(error) Delivery can't be before pick up" }, on: :update
-  
+
+
  
   
-  validates_presence_of  :load_size, :pick_up_date,
+  validates_presence_of  :load_size, :pick_up_date, :national_average_diesel_price,
   :equipment_type, :status_name, :driver_user_id, :company_profile,
   :rate_to_owner_operator, :invoice_price, :origin_street, :origin_city, :origin_state
 
   validates :destination_street, :destination_city, :miles, :destination_state, :delivery_date,
   presence: true, unless: :has_multiple_pd?
   validates :percent_coverted_to_dollars, presence: true, unless: :is_company_driver
+  validates :invoice_price, numericality: { other_than: 0.0 }  
   validates :percent_coverted_to_dollars, numericality: { other_than: 0.00 }
+
   ransack_alias :load_search_params,
   :driver_user_first_name_or_driver_user_last_name_or_origin_city_or_destination_city_or_origin_state_or_destination_state_or_company_profile_company_name_or_broker_shipper_load_id
  

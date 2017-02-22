@@ -71,6 +71,8 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.string :receiver_company_name
       t.integer :driver_statement_id, index: true
       t.integer :percentage_id
+      t.decimal :national_average_diesel_price
+      t.decimal :estimated_diesel_cost   
 
 
       t.timestamps
@@ -246,7 +248,7 @@ class AddTable < ActiveRecord::Migration[5.0]
     end
     
     create_table :trucks do |t|
-      t.boolean :belongs_to_company, default: false
+      t.boolean :belongs_to_company, default: false 
       t.string :year
       t.string :make
       t.string :model
@@ -264,6 +266,7 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.float :longitude
       t.string :plate
       t.string :plate_state
+      t.decimal :average_mpg, default: 5.5 
       t.integer :driver_user_id, index: true
       t.timestamps
     end  

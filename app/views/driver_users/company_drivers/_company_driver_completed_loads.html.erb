@@ -1,7 +1,8 @@
+ <% if @completed_loads.present? %>
 <h1>Completed Loads</h1>
  <%= link_to "Create Statement", 
  new_driver_user_driver_statement_path(@driver),
- class: 'btn btn-primary btn-xs round'if current_company_user %>
+ class: 'btn btn-primary btn-xs round' if current_company_user and @completed_loads.present? %>
 <table class="table table-bordered table-striped table-condensed table-responsive"> 
 	<thead>
 		<tr>
@@ -13,8 +14,6 @@
       <th>Gross Pay</th>
       <th>Debits</th>
       <th>Credits</th>
-
-
       <th>Trailer Type</th>
       <th>Load Size</th>
       <th>Status</th>
@@ -99,3 +98,7 @@
 		</tr>
 	</tbody>
 </table>
+
+<% else %>
+<h1>No loads for this pay cycle</h1>
+<% end %>

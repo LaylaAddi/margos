@@ -1,10 +1,10 @@
 class TrucksController < ApplicationController
   before_action :set_truck, only: [:show, :edit, :update, :destroy]
-  before_action :validate_hrc_user, except: [:show]  
+  before_action :validate_company_user, except: [:show]   
 
   def index
+
     @trucks = Truck.all
-  	
     respond_to do |format|
       format.html 
       format.csv { send_data @trucks.as_csv }  
@@ -99,7 +99,8 @@ class TrucksController < ApplicationController
                                     :latitude,
                                     :longitude,
                                     :plate,
-                                    :plate_state
+                                    :plate_state,
+                                    :average_mpg
                                     )
     end
 end
