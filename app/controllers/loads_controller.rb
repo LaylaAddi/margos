@@ -244,6 +244,7 @@ class LoadsController < ApplicationController
                                     :driver_rate_id, 
                                     :national_average_diesel_price,   
                                     :estimated_diesel_cost,
+                                    :truck_mpg,
                                     load_origin_addresses_attributes: 
                                       [
                                       :street,

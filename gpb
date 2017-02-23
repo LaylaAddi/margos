@@ -1,5 +1,5 @@
 git add -A
-git commit -m "JS for new load calculatons" 
+git commit -m "added if company driver not present in dispatch view/  started on noko rescue" 
 git push -u origin someNewBranch  
 
  

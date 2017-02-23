@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery prepend: true
-  before_action :driver_list, :app_variable, :average_diesel_price
+  before_action :driver_list, :app_variable, :national_average_diesel
    
   around_action :user_time_zone, if: :current_user
   
@@ -12,11 +12,22 @@ class ApplicationController < ActionController::Base
     @driver_list = DriverUser.where(["employment_status = ?", "active"]).order('first_name ASC')   
   end
   
-  def average_diesel_price
-    page = Nokogiri::HTML(open('https://www.eia.gov/petroleum/weekly/'))
-    @national_average_diesel_price = page.xpath('//*[@id="rp_diesel"]/td[2]').text
-  end
   
+  def national_average_diesel
+
+  page = Nokogiri::HTML(open('https://www.eia.gov/petroleum/weekly/'))
+  @national_average_diesel_price = page.xpath('//*[@id="rp_diesel"]/td[2]').text
+
+# begin
+#     @national_average_diesel_price = page.xpath('//*[@id="rp_diesel"]/td[2]').text
+# rescue
+#   @national_average_diesel_price = 0 
+# else
+#   @national_average_diesel_price = page.xpath('//*[@id="rp_diesel"]/td[2]').text
+# end  
+
+  
+  end
   devise_group :user, contains: [:company_user, :shipper_user, :driver_user] 
   devise_group :company_user, contains: [:company_user] 
   devise_group :shipper_user, contains: [:shipper_user] 
@@ -36,3 +47,15 @@ class ApplicationController < ActionController::Base
     end
     
 end
+
+
+
+
+
+
+
+
+
+
+
+

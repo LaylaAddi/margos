@@ -83,17 +83,21 @@
 </table>
 
 
+<% @miles_divided_truck_mpg = @load.miles / @load.truck_mpg %>
+<% @projected_diesel_cost = @load.national_average_diesel_price * @miles_divided_truck_mpg %>
 <table class="table table-bordered table-striped table-hover table-condensed table-responsive">
 	<thead>
 		<tr>
-			<th>head</th>
-			<th>head</th> 
+			<th>Average Fuel Price</th>
+			<th>Projected Fuel Cost</th> 
+
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>content</td>
-			<td>content</td>
+			<td><%= number_to_currency(@load.national_average_diesel_price) %></td>
+			<td><%= number_to_currency(@projected_diesel_cost) %></td>
+
 		</tr>
 	</tbody>
 </table>

@@ -72,7 +72,8 @@ class AddTable < ActiveRecord::Migration[5.0]
       t.integer :driver_statement_id, index: true
       t.integer :percentage_id
       t.decimal :national_average_diesel_price
-      t.decimal :estimated_diesel_cost   
+      t.decimal :estimated_diesel_cost  
+      t.decimal :truck_mpg, default: 5.5 
 
 
       t.timestamps

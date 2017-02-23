@@ -291,6 +291,7 @@ ActiveRecord::Schema.define(version: 20160929044746) do
     t.integer  "percentage_id"
     t.decimal  "national_average_diesel_price"
     t.decimal  "estimated_diesel_cost"
+    t.decimal  "truck_mpg",                     default: "5.5"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.index ["company_profile_id"], name: "index_loads_on_company_profile_id", using: :btree

@@ -7,6 +7,8 @@ RailsAdmin.config do |config|
   config.main_app_name = ["Acme App Inc.", "Back Office"]
   ### Popular gems integration
 
+
+
   ## == Devise ==
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
@@ -39,6 +41,7 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+  config.excluded_models = ["Address", "AddressCategory", "DriverRate", "LoadOriginAddress", "Mc", "Percentage"]  
     ## With an audit adapter, you can add:
     # history_index
     # history_show
