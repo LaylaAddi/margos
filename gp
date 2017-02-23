@@ -1,5 +1,5 @@
 git add -A
-git commit -m "fixed html tags in company user show and dash"
+git commit -m "merge someNewBranch"
 git push -u origin master      
     
 
